@@ -1,3 +1,5 @@
+package practicapeliculas;
+
 import java.io.File;
 
 public class Clasificacion {

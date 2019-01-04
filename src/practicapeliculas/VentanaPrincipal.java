@@ -1,9 +1,8 @@
 /**
  * Ultima actualizacion: 30/12/2018
  * Cambios: (Por Carlos Sánchez Muñoz) Ventana principal, el muro de cada user
- *          (Por Mario) Añadido el evento de abrir la ventana de ver amigos, añadido el paquete de iterator, 
- *                      iterator para itroducir los elementos de la lista de amigos alcombo box de ver amigos.
- * Version:3
+ *          (Por Mario) Anadido el metodo para abrir la ventana de las solicitudes de amirtad
+ * Version:4
  *
  */
 
@@ -30,7 +29,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
 
     }
-
+    //COMENTARIO 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,6 +117,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Solicitudes de amistad...");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -208,6 +212,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventanaP.setFilms(films);
         ventanaP.setVisible(true);
     }//GEN-LAST:event_bVerPeliculasActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        VentanaSolicitudes vS = new VentanaSolicitudes();
+        //Recorrido de la lista de solicitudes para meterla en el comboBox
+        for (Usuario u: user.getSolicitudes_amigos_pendientes()){
+            vS.getjComboSolicitudes().addItem(u.getNombre());
+        }
+        vS.setUser(this.user);
+        vS.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments

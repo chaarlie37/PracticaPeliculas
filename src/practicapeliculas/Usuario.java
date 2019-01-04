@@ -3,7 +3,7 @@
  * Creado el 26/12/2018
  * Ultima actualizacion: 30/12/2018
  * Cambios: (Por Carlos Sánchez Muñoz) pequeños cambios y añadidos más constructores
- * Version:3 
+ * Version:4
  * 
  */
 package practicapeliculas;
