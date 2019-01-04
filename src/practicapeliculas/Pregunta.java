@@ -33,22 +33,23 @@ public class Pregunta{
     }
 
     public String ofrecerNuevaPista(){          // boton de pista
-        if(numero_pista != 0){
-            numero_pista++;
-        }        
+        String pista = "Has alcanzado el número de pistas máximo.";       
         switch(numero_pista){
-            case 0: if(id > 0) return ofrecerTitulo();
-                    else return ofrecerAno();
-            case 1: if(id > 1) return ofrecerAno();
-                    else return ofrecerGenero();
-            case 2: if(id > 2) return ofrecerGenero();
-                    else return ofrecerDirector();
-            case 3: if(id > 3) return ofrecerDirector();
-                    else return ofrecerActor();
-            case 4: if(id > 4) return ofrecerActor();
-                    else return ofrecerActriz();
-        }
-        return "Has alcanzado el número de pistas máximo.";
+            case 0: if(id > 2) pista = ofrecerAno();
+                    else pista = ofrecerGenero();
+            break;
+            case 1: if(id > 3 && id < 6) pista = ofrecerGenero();
+                    else pista = ofrecerDirector();
+            break;
+            case 2: if(id > 4) pista = ofrecerDirector();
+                    else pista = ofrecerActor();
+            break;
+            case 3: if(id > 5) pista = ofrecerActor();
+                    else pista = ofrecerActriz();
+            break;
+        }       
+        numero_pista++;
+        return pista;
     }
 
 

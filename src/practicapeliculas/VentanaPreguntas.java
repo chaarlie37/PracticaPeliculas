@@ -40,18 +40,38 @@ public class VentanaPreguntas extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
+        jPanel1 = new javax.swing.JPanel();
         preguntaNumero = new javax.swing.JLabel();
-        textoPregunta = new javax.swing.JLabel();
         textoRespuesta = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoPistas = new javax.swing.JTextArea();
+        textoPregunta = new javax.swing.JLabel();
         bResponder = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        textoPistas = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         preguntaNumero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         preguntaNumero.setText("Pregunta " + contadorPreguntas + 1);
+
+        textoRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoRespuestaActionPerformed(evt);
+            }
+        });
+
+        textoPistas.setEditable(false);
+        textoPistas.setBackground(new java.awt.Color(255, 255, 255));
+        textoPistas.setColumns(20);
+        textoPistas.setForeground(new java.awt.Color(255, 255, 255));
+        textoPistas.setLineWrap(true);
+        textoPistas.setRows(5);
+        textoPistas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoPistas.setOpaque(false);
+        jScrollPane1.setViewportView(textoPistas);
 
         textoPregunta.setText("<pregunta>");
 
@@ -64,52 +84,42 @@ public class VentanaPreguntas extends javax.swing.JFrame {
 
         jLabel1.setText("Pistas:");
 
-        textoPistas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textoPistas.setText("TextoPistas");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(bResponder)
-                .addGap(206, 206, 206))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(preguntaNumero)
-                            .addComponent(textoPregunta)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(textoPistas, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel1)
+                    .addComponent(bResponder)
+                    .addComponent(preguntaNumero)
+                    .addComponent(textoPregunta)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(150, Short.MAX_VALUE)
                 .addComponent(preguntaNumero)
                 .addGap(18, 18, 18)
                 .addComponent(textoPregunta)
                 .addGap(37, 37, 37)
-                .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(bResponder)
+                .addComponent(textoRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(bResponder)
+                .addGap(27, 27, 27)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(textoPistas, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(jPanel1, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -124,7 +134,7 @@ public class VentanaPreguntas extends javax.swing.JFrame {
             }else{
                 ofrecerNuevaPregunta();
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "¡Respuesta incorrecta!", "Respuesta correcta", JOptionPane.PLAIN_MESSAGE);
             contadorPistas++;
@@ -137,14 +147,18 @@ public class VentanaPreguntas extends javax.swing.JFrame {
 
         if (contadorPistas > 4 && contadorPreguntas < 6){
             ofrecerNuevaPregunta();
-        }        
-        else if(contadorPistas > 4 && contadorPreguntas == 6){
-            finalizar();      
-            // prueba blablabla
-            
         }
-        
+        else if(contadorPistas > 4 && contadorPreguntas == 6){
+            finalizar();
+            // prueba blablabla
+
+        }
+
     }//GEN-LAST:event_bResponderActionPerformed
+
+    private void textoRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoRespuestaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoRespuestaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +218,7 @@ public class VentanaPreguntas extends javax.swing.JFrame {
         textoPregunta.setText(pregunta.toString());
         contadorPistas = 0;
         contadorPreguntas++;
+        pistas = "";
         // Del alfabeto no se pero me puedes editar esta
         
     }
@@ -227,8 +242,10 @@ public class VentanaPreguntas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bResponder;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel preguntaNumero;
-    private javax.swing.JLabel textoPistas;
+    private javax.swing.JTextArea textoPistas;
     private javax.swing.JLabel textoPregunta;
     private javax.swing.JTextField textoRespuesta;
     // End of variables declaration//GEN-END:variables

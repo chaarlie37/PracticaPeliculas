@@ -40,13 +40,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        muroLabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bCompartirTodo = new javax.swing.JButton();
         bVerCriticas = new javax.swing.JButton();
         bVerPeliculas = new javax.swing.JButton();
         bCerrarSesion = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textoMuro = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -60,9 +60,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Mi muro:");
-
-        muroLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        jScrollPane1.setViewportView(muroLabel);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -105,6 +102,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(bCerrarSesion)
                 .addContainerGap())
         );
+
+        textoMuro.setEditable(false);
+        textoMuro.setColumns(20);
+        textoMuro.setRows(5);
+        jScrollPane2.setViewportView(textoMuro);
 
         jMenu1.setText("Amigos");
 
@@ -157,8 +159,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 22, Short.MAX_VALUE))))
         );
@@ -167,10 +169,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addGap(16, 16, 16))
         );
 
@@ -273,8 +277,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     
     
-    public void setMuroLabel(StringBuilder s){
-        muroLabel.setText(s.toString());
+    public void setTextoMuro(StringBuilder s){
+        textoMuro.setText(s.toString());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -292,7 +296,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel muroLabel;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea textoMuro;
     // End of variables declaration//GEN-END:variables
 }
