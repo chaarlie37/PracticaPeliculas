@@ -204,6 +204,7 @@ public class VentanaPreguntas extends javax.swing.JFrame {
         textoPregunta.setText(pregunta.toString());
         contadorPistas = 0;
         contadorPreguntas++;
+        // editame esto
         
     }
     
