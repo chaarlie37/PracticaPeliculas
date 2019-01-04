@@ -139,7 +139,9 @@ public class VentanaPreguntas extends javax.swing.JFrame {
             ofrecerNuevaPregunta();
         }        
         else if(contadorPistas > 4 && contadorPreguntas == 6){
-            finalizar();            
+            finalizar();      
+            // prueba blablabla
+            
         }
         
     }//GEN-LAST:event_bResponderActionPerformed
