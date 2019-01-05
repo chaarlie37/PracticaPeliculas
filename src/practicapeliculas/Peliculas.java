@@ -75,7 +75,7 @@ public class Peliculas implements Serializable{
          return ((new Pelicula(titulo)).equals(buscarPelicula(titulo))); 
     }
      
-   //hola soy lidia 
+   
     // cambio 03/01/19
      
     public Pelicula peliculaAleatoria(){

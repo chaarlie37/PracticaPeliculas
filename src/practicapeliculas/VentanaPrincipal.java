@@ -66,6 +66,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bCompartirTodo.setText("Compartir todo...");
 
         bVerCriticas.setText("Críticas...");
+        bVerCriticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVerCriticasActionPerformed(evt);
+            }
+        });
 
         bVerPeliculas.setText("Películas...");
         bVerPeliculas.addActionListener(new java.awt.event.ActionListener() {
@@ -241,6 +246,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vd.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bCerrarSesionActionPerformed
+
+    private void bVerCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerCriticasActionPerformed
+        // TODO add your handling code here:
+        // for each
+        VentanaCritica vcrit = new VentanaCritica(); 
+        for (Usuario usu: user.getLista_amigos()){
+            vcrit.getComboAmigos().addItem(usu.getNombre());
+        }
+         Iterator<Pelicula> i = films.getListaPeliculas().iterator(); 
+        while (i.hasNext()){
+            vcrit.getComboCritica().addItem(i.next().getTitulo()); 
+        }
+        vcrit.setVisible(true); 
+        this.setVisible(false); 
+    }//GEN-LAST:event_bVerCriticasActionPerformed
 
     /**
      * @param args the command line arguments

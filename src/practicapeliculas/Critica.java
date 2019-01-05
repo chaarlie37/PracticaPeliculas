@@ -18,6 +18,11 @@ public class Critica {
         this.texto = texto;  
     }
     
+    public HashSet<Critica> getListaCriticas(){
+        return listaCriticas; 
+    }
+    
+    
    
    /* @Override
     public void compartir(Usuario u) {
@@ -29,4 +34,13 @@ public class Critica {
         
     }
     */
+
+    public double getPuntuacion() {
+        return puntuacion;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+    
 }
