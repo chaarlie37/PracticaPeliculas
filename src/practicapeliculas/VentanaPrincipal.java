@@ -66,6 +66,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         bCompartirTodo.setText("Compartir todo...");
 
         bVerCriticas.setText("Críticas...");
+        bVerCriticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVerCriticasActionPerformed(evt);
+            }
+        });
 
         bVerPeliculas.setText("Películas...");
         bVerPeliculas.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +245,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vd.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bCerrarSesionActionPerformed
+
+    private void bVerCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerCriticasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bVerCriticasActionPerformed
 
     /**
      * @param args the command line arguments

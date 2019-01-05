@@ -46,6 +46,7 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("NUEVA CRITICA");
 
         jLabel2.setText("PUNTUACION:");
@@ -59,7 +60,6 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
             }
         });
 
-        tPuntuacion.setText("jTextField1");
         tPuntuacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tPuntuacionActionPerformed(evt);
@@ -83,23 +83,20 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(224, 224, 224)
                         .addComponent(BAcept)))
                 .addContainerGap(76, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(211, 211, 211))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(44, 44, 44)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -110,7 +107,7 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(BAcept)
                 .addGap(30, 30, 30))
         );
@@ -125,10 +122,13 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
     private void BAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAceptActionPerformed
         // TODO add your handling code here:
          double puntuacion = Double.parseDouble(tPuntuacion.getText()); 
-        while(puntuacion>10 || puntuacion<0){ 
-          JOptionPane.showMessageDialog(this, "Introduzca una puntuación de 0 a 10","ERROR", JOptionPane.INFORMATION_MESSAGE);
+        if(puntuacion>10 || puntuacion<0){ 
+          JOptionPane.showMessageDialog(this, "Introduzca una puntuación de 0 a 10","ERROR", JOptionPane.ERROR_MESSAGE);
         }
+        else{
       Critica c = new Critica(film.getTitulo(), puntuacion, tDescr.getText()); 
+      JOptionPane.showMessageDialog(this, "Crítica guardada correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_BAceptActionPerformed
 
     /**
