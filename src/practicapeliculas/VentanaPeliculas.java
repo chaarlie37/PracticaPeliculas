@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package practicapeliculas;
+package practicapeliculas; 
 import java.util.Iterator; 
 /**
  *
@@ -57,7 +57,7 @@ public class VentanaPeliculas extends javax.swing.JFrame {
         BVerpeli = new javax.swing.JButton();
         BAnadirpeli = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("PELICULAS");
 
@@ -68,6 +68,11 @@ public class VentanaPeliculas extends javax.swing.JFrame {
         });
 
         BCompartir.setText("Compartir...");
+        BCompartir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCompartirActionPerformed(evt);
+            }
+        });
 
         BCritica.setText("Realizar crítica");
         BCritica.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +168,21 @@ public class VentanaPeliculas extends javax.swing.JFrame {
         ventanaV.setVisible(true);
         this.setVisible(false); 
     }//GEN-LAST:event_BVerpeliActionPerformed
+
+    private void BCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCompartirActionPerformed
+        VentanaCompartir vCom = new VentanaCompartir();
+        String s = "Todos los amigos";
+        vCom.getjComboAQuien().addItem(s);
+        Iterator <Usuario> iter = user.getLista_amigos().iterator();
+        Usuario usuar = new Usuario();
+        //iterator para el combobox
+        while(iter.hasNext()){
+            usuar = iter.next();
+            vCom.getjComboAQuien().addItem(usuar.getNombre());
+        }
+        
+        vCom.setVisible(true);
+    }//GEN-LAST:event_BCompartirActionPerformed
 
    
     /**
