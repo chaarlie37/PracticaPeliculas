@@ -219,6 +219,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         VentanaPeliculas ventanaP = new VentanaPeliculas(); 
         ventanaP.setFilms(films);
+        ventanaP.setUser(user);
         ventanaP.setVisible(true);
     }//GEN-LAST:event_bVerPeliculasActionPerformed
 
