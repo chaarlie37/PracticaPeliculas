@@ -6,7 +6,10 @@
  */
 package practicapeliculas;
 
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import java.io.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -30,7 +33,6 @@ public class VentanaDatos extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -39,37 +41,20 @@ public class VentanaDatos extends javax.swing.JFrame {
         bRegistrarse = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         campoPass = new javax.swing.JPasswordField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        botonGuardarPeliculas = new javax.swing.JMenuItem();
+        botonCargarPeliculas = new javax.swing.JMenuItem();
+        botonGuardarUsuarios = new javax.swing.JMenuItem();
+        botonCargarUsuarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Nombre de usuario:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(73, 68, 0, 0);
-        getContentPane().add(jLabel1, gridBagConstraints);
 
         jLabel2.setText("Contraseña:");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(27, 68, 0, 0);
-        getContentPane().add(jLabel2, gridBagConstraints);
 
         nombreUsuario.setName(""); // NOI18N
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.ipadx = 106;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(69, 39, 0, 85);
-        getContentPane().add(nombreUsuario, gridBagConstraints);
 
         bIniciarSesion.setText("Iniciar Sesión");
         bIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
@@ -77,14 +62,6 @@ public class VentanaDatos extends javax.swing.JFrame {
                 bIniciarSesionActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 9;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(44, 2, 0, 0);
-        getContentPane().add(bIniciarSesion, gridBagConstraints);
 
         bRegistrarse.setText("Registrarse");
         bRegistrarse.addActionListener(new java.awt.event.ActionListener() {
@@ -92,31 +69,94 @@ public class VentanaDatos extends javax.swing.JFrame {
                 bRegistrarseActionPerformed(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.gridwidth = 3;
-        gridBagConstraints.ipadx = 19;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(6, 2, 0, 0);
-        getContentPane().add(bRegistrarse, gridBagConstraints);
 
         jLabel3.setText("                          ");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 5;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(30, 10, 32, 0);
-        getContentPane().add(jLabel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 3;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.gridwidth = 5;
-        gridBagConstraints.ipadx = 106;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(21, 39, 0, 85);
-        getContentPane().add(campoPass, gridBagConstraints);
+
+        jMenu1.setText("Archivo");
+
+        botonGuardarPeliculas.setText("Guardar películas...");
+        botonGuardarPeliculas.setToolTipText("");
+        botonGuardarPeliculas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarPeliculasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(botonGuardarPeliculas);
+
+        botonCargarPeliculas.setText("Cargar películas...");
+        botonCargarPeliculas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarPeliculasActionPerformed(evt);
+            }
+        });
+        jMenu1.add(botonCargarPeliculas);
+
+        botonGuardarUsuarios.setText("Guardar usuarios...");
+        botonGuardarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonGuardarUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(botonGuardarUsuarios);
+
+        botonCargarUsuarios.setText("Cargar usuarios...");
+        botonCargarUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCargarUsuariosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(botonCargarUsuarios);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel1)
+                .addGap(39, 39, 39)
+                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel2)
+                .addGap(81, 81, 81)
+                .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(bIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(128, 128, 128)
+                .addComponent(bRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(178, 178, 178)
+                .addComponent(jLabel3))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel1))
+                    .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2))
+                    .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(44, 44, 44)
+                .addComponent(bIniciarSesion)
+                .addGap(6, 6, 6)
+                .addComponent(bRegistrarse)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel3))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -158,6 +198,90 @@ public class VentanaDatos extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_bRegistrarseActionPerformed
+
+    private void botonGuardarPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarPeliculasActionPerformed
+
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos binarios (.bin)", "bin", "BIN"));     // asi se pueden filtrar los archivos.bin
+        selectorArchivos.setAcceptAllFileFilterUsed(false);     
+        int opcionSeleccionada = selectorArchivos.showSaveDialog(this);
+        if(opcionSeleccionada == JFileChooser.APPROVE_OPTION ){
+            try{
+                File archivo = selectorArchivos.getSelectedFile();
+                String ruta = archivo.getAbsolutePath();
+                if(!ruta.endsWith(".bin")){
+                    ruta += ".bin";     // si el usuario no ha puesto la extension .bin, se escribe automaticamente
+                }
+                FileOutputStream output = new FileOutputStream(ruta);
+                films.WritePeliculas(output);
+                JOptionPane.showMessageDialog(this, "Se ha guardado el archivo " + ruta + " correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            }catch(IOException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }            
+        }
+    }//GEN-LAST:event_botonGuardarPeliculasActionPerformed
+
+    private void botonCargarPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarPeliculasActionPerformed
+
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos binarios (.bin)", "bin", "BIN"));     // asi se pueden filtrar los archivos.bin
+        selectorArchivos.setAcceptAllFileFilterUsed(false);
+        int opcionSeleccionada = selectorArchivos.showOpenDialog(this);
+        if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
+            try {
+                File archivo = selectorArchivos.getSelectedFile();
+                FileInputStream input = new FileInputStream(archivo);
+                films.ReadPeliculas(input);
+                JOptionPane.showMessageDialog(this, "Se ha cargado el archivo correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (ClassNotFoundException ex){
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botonCargarPeliculasActionPerformed
+
+    private void botonGuardarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarUsuariosActionPerformed
+        // TODO add your handling code here:
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos binarios (.bin)", "bin", "BIN"));     // asi se pueden filtrar los archivos.bin
+        selectorArchivos.setAcceptAllFileFilterUsed(false);
+        int opcionSeleccionada = selectorArchivos.showSaveDialog(this);
+        if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
+            try {
+                File archivo = selectorArchivos.getSelectedFile();
+                String ruta = archivo.getAbsolutePath();
+                if (!ruta.endsWith(".bin")) {
+                    ruta += ".bin";     // si el usuario no ha puesto la extension .bin, se escribe automaticamente
+                }
+                FileOutputStream output = new FileOutputStream(ruta);
+                users.WriteUsuarios(output);
+                JOptionPane.showMessageDialog(this, "Se ha guardado el archivo " + ruta + " correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_botonGuardarUsuariosActionPerformed
+
+    private void botonCargarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarUsuariosActionPerformed
+        // TODO add your handling code here:
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos binarios (.bin)", "bin", "BIN"));     // asi se pueden filtrar los archivos.bin
+        selectorArchivos.setAcceptAllFileFilterUsed(false);
+        int opcionSeleccionada = selectorArchivos.showOpenDialog(this);
+        if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
+            try {
+                File archivo = selectorArchivos.getSelectedFile();
+                FileInputStream input = new FileInputStream(archivo);
+                users.ReadUsuarios(input);
+                JOptionPane.showMessageDialog(this, "Se ha cargado el archivo correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            } /*catch (ClassNotFoundException ex) {
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            } */
+        }
+    }//GEN-LAST:event_botonCargarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,13 +330,29 @@ public class VentanaDatos extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "El nombre de usuario introducido ya está en uso.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public void setUsers(Usuarios users) {
+        this.users = users;
+    }
+
+    public void setFilms(Peliculas films) {
+        this.films = films;
+    }
+    
+    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bIniciarSesion;
     private javax.swing.JButton bRegistrarse;
+    private javax.swing.JMenuItem botonCargarPeliculas;
+    private javax.swing.JMenuItem botonCargarUsuarios;
+    private javax.swing.JMenuItem botonGuardarPeliculas;
+    private javax.swing.JMenuItem botonGuardarUsuarios;
     private javax.swing.JPasswordField campoPass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JTextField nombreUsuario;
     // End of variables declaration//GEN-END:variables
 }
