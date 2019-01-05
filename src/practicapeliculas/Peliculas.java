@@ -1,19 +1,20 @@
 package practicapeliculas;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Scanner;
+import java.io.*;
 
 /**
- * Ultima actualizacion: 30/12/2018 Cambios: (Por Carlos Sánchez Muñoz) Añadidos
- * varios métodos 
- * Version:2
+ * Ultima actualizacion: 05/01/2019 Cambios: (Por Carlos Sánchez Muñoz) Añadidos metodos para serializar
+ * Version:3
  *
  */
 
 
-public class Peliculas {
+public class Peliculas implements Serializable{
 
     private HashSet<Pelicula> listaPeliculas = new HashSet<>();
+    
+    
     // Constructor vacio
     public Peliculas() {
     }
@@ -90,5 +91,27 @@ public class Peliculas {
             System.out.println(p.toString());
         return p;
     }
-
+    
+    public void WritePeliculas(FileOutputStream file){
+        try{
+            ObjectOutputStream outStream = new ObjectOutputStream(file);
+            outStream.writeObject(listaPeliculas);
+            outStream.close();
+        }catch (IOException ex){};
+        
+    }
+    
+    public void ReadPeliculas(FileInputStream file) throws ClassNotFoundException{
+        try{
+            ObjectInputStream inputStream = new ObjectInputStream(file);
+            HashSet<Pelicula> listaPeliculasGuardadas = (HashSet <Pelicula>) inputStream.readObject();
+            listaPeliculas = listaPeliculasGuardadas;
+            inputStream.close();
+        }
+        catch(IOException ex){}
+        catch (ClassNotFoundException exc){
+        }
+        
+    }
+            
 }

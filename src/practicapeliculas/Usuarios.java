@@ -7,6 +7,11 @@
 
 package practicapeliculas;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.HashSet;
 
@@ -122,5 +127,27 @@ public class Usuarios{
             return false; 
          }
         return (new Usuario(nombre).equals(buscarUsuario(nombre)));
+    }
+    
+    public void WriteUsuarios(FileOutputStream file) {
+        try {
+            ObjectOutputStream outStream = new ObjectOutputStream(file);
+            outStream.writeObject(listaUsuarios);
+            outStream.close();
+        } catch (IOException ex) {
+        };
+
+    }
+
+    public void ReadUsuarios(FileInputStream file){
+        try {
+            ObjectInputStream inputStream = new ObjectInputStream(file);
+            HashSet<Usuario> listaUsuariosGuardados = (HashSet<Usuario>) inputStream.readObject();
+            listaUsuarios = listaUsuariosGuardados;
+            inputStream.close();
+        } catch (IOException ex) {
+        } catch (ClassNotFoundException exc) {
+        }
+
     }
 }

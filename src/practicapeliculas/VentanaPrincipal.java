@@ -75,6 +75,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         bCerrarSesion.setText("Cerrar Sesión");
+        bCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCerrarSesionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -226,6 +231,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vS.setUser(this.user);
         vS.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
+        // TODO add your handling code here:
+        VentanaDatos vd = new VentanaDatos();
+        vd.setUsers(users);
+        vd.setFilms(films);
+        vd.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bCerrarSesionActionPerformed
 
     /**
      * @param args the command line arguments
