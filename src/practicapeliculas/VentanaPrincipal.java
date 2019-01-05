@@ -248,6 +248,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void bVerCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerCriticasActionPerformed
         // TODO add your handling code here:
+        // for each
+        VentanaCritica vcrit = new VentanaCritica(); 
+        for (Usuario usu: user.getLista_amigos()){
+            vcrit.getComboAmigos().addItem(usu.getNombre());
+        }
+         Iterator<Pelicula> i = films.getListaPeliculas().iterator(); 
+        while (i.hasNext()){
+            vcrit.getComboCritica().addItem(i.next().getTitulo()); 
+        }
+        vcrit.setVisible(true); 
+        this.setVisible(false); 
     }//GEN-LAST:event_bVerCriticasActionPerformed
 
     /**

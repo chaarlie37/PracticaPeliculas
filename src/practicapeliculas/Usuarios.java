@@ -150,4 +150,17 @@ public class Usuarios{
         }
 
     }
+    
+    public Usuario bucarUsuario(String nom){
+        boolean encontrado = false;
+        Iterator<Usuario> i = listaUsuarios.iterator();
+        Usuario usu = new Usuario();
+        while(i.hasNext() && !encontrado){
+            usu = i.next();
+            if(usu.getNombre().equals(nom)){
+                encontrado = true;
+            }
+        }
+        return usu;
+    }
 }

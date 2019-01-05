@@ -44,7 +44,7 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tDescr = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("NUEVA CRITICA");
@@ -129,6 +129,7 @@ public class VentanaEscribeCr extends javax.swing.JFrame {
       Critica c = new Critica(film.getTitulo(), puntuacion, tDescr.getText()); 
       JOptionPane.showMessageDialog(this, "Crítica guardada correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
         }
+        
     }//GEN-LAST:event_BAceptActionPerformed
 
     /**
