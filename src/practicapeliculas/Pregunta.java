@@ -95,7 +95,14 @@ public class Pregunta{
     public boolean comprobarRespuesta(String r){            // boton de contestar
         return r.equals(this.respuesta);
     }
+
+    public int getNumero_pista() {
+        return numero_pista;
+    }
     
+    public void incrementarNumeroPistas() {
+        numero_pista++;
+    }
 
 
     public int getPuntos_jugador_1() {

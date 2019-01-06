@@ -9,6 +9,7 @@
 package practicapeliculas;
 
 import java.util.Iterator;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,8 +23,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     
     private Usuario user;
+    private Usuario j2; // jugador contrincante del trivia
     private Usuarios users;
     private Peliculas films;
+    private Partida partida;
     
     public VentanaPrincipal() {
         initComponents();
@@ -39,6 +42,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dialogoTrivia = new javax.swing.JDialog();
+        bJugar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        labelContrincante = new javax.swing.JLabel();
+        dialogoPreguntas = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoPistas = new javax.swing.JTextArea();
+        textoPregunta = new javax.swing.JLabel();
+        bResponder = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        preguntaNumero = new javax.swing.JLabel();
+        textoRespuesta = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bCompartirTodo = new javax.swing.JButton();
@@ -55,6 +71,127 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         botonJugarPartida = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+
+        dialogoTrivia.setBounds(new java.awt.Rectangle(0, 0, 500, 500));
+
+        bJugar.setText("JUGAR");
+        bJugar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bJugarActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cancelar partida");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Contrincante:");
+
+        labelContrincante.setText("<contricante>");
+
+        javax.swing.GroupLayout dialogoTriviaLayout = new javax.swing.GroupLayout(dialogoTrivia.getContentPane());
+        dialogoTrivia.getContentPane().setLayout(dialogoTriviaLayout);
+        dialogoTriviaLayout.setHorizontalGroup(
+            dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoTriviaLayout.createSequentialGroup()
+                .addContainerGap(164, Short.MAX_VALUE)
+                .addGroup(dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelContrincante)
+                    .addGroup(dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoTriviaLayout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(161, 161, 161))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoTriviaLayout.createSequentialGroup()
+                            .addComponent(jButton1)
+                            .addContainerGap()))))
+            .addGroup(dialogoTriviaLayout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(bJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        dialogoTriviaLayout.setVerticalGroup(
+            dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoTriviaLayout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(jLabel2)
+                .addGap(31, 31, 31)
+                .addComponent(labelContrincante)
+                .addGap(31, 31, 31)
+                .addComponent(bJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        dialogoPreguntas.setTitle("Trivia");
+
+        textoPistas.setEditable(false);
+        textoPistas.setBackground(new java.awt.Color(255, 255, 255));
+        textoPistas.setColumns(20);
+        textoPistas.setForeground(new java.awt.Color(255, 255, 255));
+        textoPistas.setLineWrap(true);
+        textoPistas.setRows(5);
+        textoPistas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        textoPistas.setOpaque(false);
+        jScrollPane1.setViewportView(textoPistas);
+
+        textoPregunta.setText("<pregunta>");
+
+        bResponder.setText("Responder");
+        bResponder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bResponderActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Pistas:");
+
+        preguntaNumero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        preguntaNumero.setText("<Pregunta 01>");
+
+        textoRespuesta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textoRespuestaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogoPreguntasLayout = new javax.swing.GroupLayout(dialogoPreguntas.getContentPane());
+        dialogoPreguntas.getContentPane().setLayout(dialogoPreguntasLayout);
+        dialogoPreguntasLayout.setHorizontalGroup(
+            dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addGroup(dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(jLabel3)
+                    .addComponent(bResponder)
+                    .addComponent(preguntaNumero)
+                    .addComponent(textoPregunta)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(215, Short.MAX_VALUE))
+        );
+        dialogoPreguntasLayout.setVerticalGroup(
+            dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                .addContainerGap(122, Short.MAX_VALUE)
+                .addComponent(preguntaNumero)
+                .addGap(18, 18, 18)
+                .addComponent(textoPregunta)
+                .addGap(37, 37, 37)
+                .addComponent(textoRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bResponder)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(127, Short.MAX_VALUE))
+        );
+
+        dialogoPreguntas.getAccessibleContext().setAccessibleParent(dialogoTrivia);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -208,12 +345,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void botonJugarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarPartidaActionPerformed
         // TODO add your handling code here:
         if(users.getListaUsuarios().size()>1){
-            VentanaTrivia vt = new VentanaTrivia();
-            vt.setJ1(user);
-            vt.setUsers(users);
-            Usuario userAleatorio = users.usuarioAleatorio(user, users.getListaUsuarios());
-            vt.setJ2(userAleatorio);
-            vt.setVisible(true);
+            j2 = users.usuarioAleatorio(user);
+            labelContrincante.setText(j2.getNombre());
+            dialogoTrivia.setVisible(true);
         }
         else{
             JOptionPane.showMessageDialog(this, "No hay suficientes usuarios registrados para poder iniciar una partida.", "Jugadores insuficientes", JOptionPane.ERROR_MESSAGE);
@@ -262,6 +396,55 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.setVisible(false); 
     }//GEN-LAST:event_bVerCriticasActionPerformed
 
+    private void bJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugarActionPerformed
+        // TODO add your handling code here:
+        partida = user.iniciarPartida(j2);      
+        textoPregunta.setText(partida.getPreguntaActual().toString());
+        preguntaNumero.setText(String.valueOf(partida.getIdentificador()));
+        dialogoPreguntas.setVisible(true);
+    }//GEN-LAST:event_bJugarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void bResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResponderActionPerformed
+        // TODO add your handling code here:
+        String pistas = "";
+        int puntosActuales = 50;
+        if (partida.getPreguntaActual().comprobarRespuesta(textoRespuesta.getText())) {
+            JOptionPane.showMessageDialog(this, "¡Respuesta correcta! +" + puntosActuales + " puntos", "Respuesta correcta", JOptionPane.PLAIN_MESSAGE);
+            partida.setPuntosTotales(puntosActuales + partida.getPuntosTotales());
+            if(partida.getIdentificador() == 5){
+                finalizarPartida();
+            }else{
+                nuevaPregunta();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "¡Respuesta incorrecta!", "Respuesta correcta", JOptionPane.PLAIN_MESSAGE);
+            partida.getPreguntaActual().incrementarNumeroPistas();
+            if(partida.getPreguntaActual().getNumero_pista() < 5){
+                textoPistas.setText(textoPistas.getText() + "\n" + partida.getPreguntaActual().ofrecerNuevaPista());
+                System.out.println(partida.getPreguntaActual().ofrecerNuevaPista());
+                puntosActuales -= 10;
+            }
+        }
+
+        if (partida.getPreguntaActual().getNumero_pista() > 4 && partida.getIdentificador() < 5){
+            nuevaPregunta();
+        }
+        else if(partida.getPreguntaActual().getNumero_pista() > 4 && partida.getIdentificador() == 5){
+            finalizarPartida();
+        }
+    }//GEN-LAST:event_bResponderActionPerformed
+
+    private void textoRespuestaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoRespuestaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textoRespuestaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -309,7 +492,25 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.films = films;
     }
     
+    public void finalizarPartida() {
+        if (user.equals(partida.getJ1())) {
+            partida.setPtos_jugador1(partida.getPuntosTotales());
+            partida.ponerEnPendientes();
+            JOptionPane.showMessageDialog(this, "¡Todas las preguntas completadas!\nHas ganado un total de " + partida.getPuntosTotales() + " puntos. \nQueda pendiente que el contrincante responda sus preguntas para conocer el resultado.", "Preguntas completadas", JOptionPane.PLAIN_MESSAGE);
+        } else if (user.equals(partida.getJ2())) {
+            partida.setPtos_jugador2(partida.getPuntosTotales());
+            partida.finalizarPartida();
+            JOptionPane.showMessageDialog(this, "¡Todas las preguntas completadas!\nHas ganado un total de " + partida.getPuntosTotales() + " puntos. \nResultado:\n" + partida.toString(), "Partida completada", JOptionPane.PLAIN_MESSAGE);
+            partida.setResultado_final(partida.toString());
+        }
+        dialogoPreguntas.setVisible(false);
+    }
     
+    public void nuevaPregunta(){
+        textoPregunta.setText(partida.ofrecerNuevaPregunta());
+        preguntaNumero.setText("Pregunta " + String.valueOf(partida.getIdentificador()));
+        textoPistas.setText("");
+    }
     
     
     public void setTextoMuro(StringBuilder s){
@@ -319,10 +520,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bCompartirTodo;
+    private javax.swing.JButton bJugar;
+    private javax.swing.JButton bResponder;
     private javax.swing.JButton bVerCriticas;
     private javax.swing.JButton bVerPeliculas;
     private javax.swing.JMenuItem botonJugarPartida;
+    private javax.swing.JDialog dialogoPreguntas;
+    private javax.swing.JDialog dialogoTrivia;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -331,7 +539,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelContrincante;
+    private javax.swing.JLabel preguntaNumero;
     private javax.swing.JTextArea textoMuro;
+    private javax.swing.JTextArea textoPistas;
+    private javax.swing.JLabel textoPregunta;
+    private javax.swing.JTextField textoRespuesta;
     // End of variables declaration//GEN-END:variables
 }

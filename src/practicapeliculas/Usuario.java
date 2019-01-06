@@ -213,9 +213,8 @@ public class Usuario{
         this.listaCriticas.add(c);
     }
 
-    public void iniciarPartida(Usuario u){
-        Partida partida = new Partida(this, u, users, films);
-        partida.crearVentana();
+    public Partida iniciarPartida(Usuario u){
+        return new Partida(this, u, users, films);       
     }
 
     public void completarPartida (Partida p){}
