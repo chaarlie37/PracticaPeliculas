@@ -55,6 +55,47 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         preguntaNumero = new javax.swing.JLabel();
         textoRespuesta = new javax.swing.JTextField();
+        DialogPelis = new javax.swing.JDialog();
+        BAnadirpeli = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        ComboPelis = new javax.swing.JComboBox<>();
+        BCompartir = new javax.swing.JButton();
+        BCritica = new javax.swing.JButton();
+        BVerpeli = new javax.swing.JButton();
+        DialogCompartir = new javax.swing.JDialog();
+        jButton2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jComboAQuien = new javax.swing.JComboBox<>();
+        DialogAnadir = new javax.swing.JDialog();
+        TextFieldTitulo = new javax.swing.JTextField();
+        TextFieldAno = new javax.swing.JTextField();
+        TextFieldDirector = new javax.swing.JTextField();
+        TextFieldActor = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        TextFieldActriz = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        TextFieldGen = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        DialogVerPeli = new javax.swing.JDialog();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        lTitulo = new javax.swing.JLabel();
+        lAnno = new javax.swing.JLabel();
+        lDir = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        lActor = new javax.swing.JLabel();
+        lActriz = new javax.swing.JLabel();
+        lGen = new javax.swing.JLabel();
+        bAcept = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bCompartirTodo = new javax.swing.JButton();
@@ -193,6 +234,340 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         dialogoPreguntas.getAccessibleContext().setAccessibleParent(dialogoTrivia);
 
+        BAnadirpeli.setText("Añadir pelicula");
+        BAnadirpeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAnadirpeliActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("PELICULAS");
+
+        ComboPelis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboPelisActionPerformed(evt);
+            }
+        });
+
+        BCompartir.setText("Compartir...");
+        BCompartir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCompartirActionPerformed(evt);
+            }
+        });
+
+        BCritica.setText("Realizar crítica");
+        BCritica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCriticaActionPerformed(evt);
+            }
+        });
+
+        BVerpeli.setText("Ver");
+        BVerpeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BVerpeliActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogPelisLayout = new javax.swing.GroupLayout(DialogPelis.getContentPane());
+        DialogPelis.getContentPane().setLayout(DialogPelisLayout);
+        DialogPelisLayout.setHorizontalGroup(
+            DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogPelisLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(BVerpeli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BCompartir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BCritica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ComboPelis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(BAnadirpeli)
+                .addGap(36, 36, 36))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogPelisLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
+        );
+        DialogPelisLayout.setVerticalGroup(
+            DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogPelisLayout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(ComboPelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogPelisLayout.createSequentialGroup()
+                        .addComponent(BCompartir)
+                        .addGap(18, 18, 18)
+                        .addComponent(BCritica)
+                        .addGap(18, 18, 18)
+                        .addComponent(BVerpeli))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogPelisLayout.createSequentialGroup()
+                        .addComponent(BAnadirpeli, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61)))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        jButton2.setText("Compartir");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel5.setText("Compartir con");
+
+        jComboAQuien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboAQuienActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogCompartirLayout = new javax.swing.GroupLayout(DialogCompartir.getContentPane());
+        DialogCompartir.getContentPane().setLayout(DialogCompartirLayout);
+        DialogCompartirLayout.setHorizontalGroup(
+            DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogCompartirLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(DialogCompartirLayout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jComboAQuien, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
+        DialogCompartirLayout.setVerticalGroup(
+            DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogCompartirLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jComboAQuien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButton2)
+                .addContainerGap(105, Short.MAX_VALUE))
+        );
+
+        TextFieldAno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldAnoActionPerformed(evt);
+            }
+        });
+
+        TextFieldDirector.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldDirectorActionPerformed(evt);
+            }
+        });
+
+        TextFieldActor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldActorActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("NUEVA PELICULA");
+
+        jLabel7.setText("Titulo:");
+
+        jLabel8.setText("Año:");
+
+        jButton3.setText("Añadir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jLabel9.setText("Director/a:");
+
+        jLabel10.setText("Actor:");
+
+        jLabel11.setText("Actriz: ");
+
+        jLabel12.setText("Género:");
+
+        javax.swing.GroupLayout DialogAnadirLayout = new javax.swing.GroupLayout(DialogAnadir.getContentPane());
+        DialogAnadir.getContentPane().setLayout(DialogAnadirLayout);
+        DialogAnadirLayout.setHorizontalGroup(
+            DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(DialogAnadirLayout.createSequentialGroup()
+                        .addGap(29, 29, 29)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8))
+                                .addGap(18, 18, 18)
+                                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(TextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
+                                    .addComponent(TextFieldAno)))
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextFieldDirector, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel11)))
+                    .addGroup(DialogAnadirLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(13, 13, 13)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(TextFieldActor, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
+                    .addComponent(TextFieldActriz)
+                    .addComponent(TextFieldGen))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogAnadirLayout.createSequentialGroup()
+                .addGap(0, 176, Short.MAX_VALUE)
+                .addComponent(jButton3)
+                .addGap(157, 157, 157))
+        );
+        DialogAnadirLayout.setVerticalGroup(
+            DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogAnadirLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel10)
+                            .addComponent(TextFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel11)
+                            .addComponent(TextFieldActriz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(DialogAnadirLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(TextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(TextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(24, 24, 24)
+                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel12)
+                    .addComponent(TextFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TextFieldGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jButton3)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setText("VER PELICULA");
+
+        jLabel14.setText("TITULO");
+
+        jLabel15.setText("AÑO");
+
+        jLabel16.setText("DIRECTOR/A");
+
+        lTitulo.setText("jLabel5");
+
+        lAnno.setText("jLabel6");
+
+        lDir.setText("jLabel7");
+
+        jLabel17.setText("ACTOR");
+
+        jLabel18.setText("ACTRIZ");
+
+        jLabel19.setText("GÉNERO");
+
+        lActor.setText("jLabel11");
+
+        lActriz.setText("jLabel12");
+
+        lGen.setText("jLabel13");
+
+        bAcept.setText("ACEPTAR");
+        bAcept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAceptActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogVerPeliLayout = new javax.swing.GroupLayout(DialogVerPeli.getContentPane());
+        DialogVerPeli.getContentPane().setLayout(DialogVerPeliLayout);
+        DialogVerPeliLayout.setHorizontalGroup(
+            DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
+                        .addGap(21, 21, 21)
+                        .addComponent(jLabel16))
+                    .addGroup(DialogVerPeliLayout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel15))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lAnno)
+                    .addComponent(lTitulo)
+                    .addComponent(lDir))
+                .addGap(57, 57, 57)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel17))
+                .addGap(65, 65, 65)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lGen)
+                    .addComponent(lActriz)
+                    .addComponent(lActor))
+                .addGap(54, 54, 54))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(179, 179, 179))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
+                        .addComponent(bAcept)
+                        .addGap(210, 210, 210))))
+        );
+        DialogVerPeliLayout.setVerticalGroup(
+            DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogVerPeliLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jLabel13)
+                .addGap(27, 27, 27)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(lTitulo)
+                    .addComponent(jLabel17)
+                    .addComponent(lActor))
+                .addGap(54, 54, 54)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(lAnno)
+                    .addComponent(jLabel18)
+                    .addComponent(lActriz))
+                .addGap(53, 53, 53)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lDir)
+                    .addComponent(jLabel19)
+                    .addComponent(lGen)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bAcept)
+                .addGap(25, 25, 25))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -286,6 +661,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jMenu2.add(botonJugarPartida);
 
         jMenuItem4.setText("Mis partidas pendientes...");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem4);
 
         jMenuItem5.setText("Clasificación...");
@@ -355,11 +735,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_botonJugarPartidaActionPerformed
 
     private void bVerPeliculasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerPeliculasActionPerformed
-        // TODO add your handling code here:
-        VentanaPeliculas ventanaP = new VentanaPeliculas(); 
-        ventanaP.setFilms(films);
-        ventanaP.setUser(user);
-        ventanaP.setVisible(true);
+        Iterator<Pelicula> i = films.getListaPeliculas().iterator();  
+        while (i.hasNext()){
+            ComboPelis.addItem(i.next().getTitulo());// Asi salen los titulos en el combobox
+        }
+        DialogPelis.setVisible(true);
     }//GEN-LAST:event_bVerPeliculasActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -445,6 +825,114 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textoRespuestaActionPerformed
 
+    private void BAnadirpeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAnadirpeliActionPerformed
+        // TODO add your handling code here:
+        DialogAnadir.setVisible(true);
+        DialogPelis.setVisible(false); // Hacemos visible la nueva ventana y esta desaparece
+    }//GEN-LAST:event_BAnadirpeliActionPerformed
+
+    private void ComboPelisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboPelisActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_ComboPelisActionPerformed
+
+    private void BCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCompartirActionPerformed
+
+        String s = "Todos los amigos";
+        jComboAQuien.addItem(s);
+        Iterator <Usuario> iter = user.getLista_amigos().iterator();
+        Usuario usuar = new Usuario();
+        //iterator para el combobox
+        while(iter.hasNext()){
+            usuar = iter.next();
+            jComboAQuien.addItem(usuar.getNombre());
+        }
+
+        DialogCompartir.setVisible(true);
+    }//GEN-LAST:event_BCompartirActionPerformed
+
+    private void BCriticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCriticaActionPerformed
+        // TODO add your handling code here:
+        Pelicula p = films.buscarPelicula((String)ComboPelis.getSelectedItem());
+        VentanaEscribeCr vEscribeC = new VentanaEscribeCr();
+        vEscribeC.setFilm(p);
+        vEscribeC.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BCriticaActionPerformed
+
+    private void BVerpeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVerpeliActionPerformed
+        // TODO add your handling code here:
+        Pelicula p = films.buscarPelicula((String)ComboPelis.getSelectedItem());
+        lTitulo.setText(p.getTitulo()); 
+        lGen.setText(p.getGenero()); 
+        lActor.setText(p.getActor());
+        lActriz.setText(p.getActriz());
+        lDir.setText(p.getDirector()); 
+        lAnno.setText(String.valueOf(p.getAno()));
+        DialogVerPeli.setVisible(true);
+        DialogPelis.setVisible(false);
+    }//GEN-LAST:event_BVerpeliActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (jComboAQuien.getSelectedIndex() == 0){
+            user.compartirPelicula(films.buscarPelicula((String) ComboPelis.getSelectedItem()));
+        }else{
+            Usuario u = users.bucarUsuario((String) jComboAQuien.getSelectedItem());
+            user.compartirPelicula(films.buscarPelicula((String) ComboPelis.getSelectedItem()), u);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Se ha compartido la pelicula " + (String) ComboPelis.getSelectedItem());
+        DialogCompartir.setVisible(false);
+        DialogPelis.setVisible(true);
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboAQuienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAQuienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboAQuienActionPerformed
+
+    private void TextFieldAnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldAnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldAnoActionPerformed
+
+    private void TextFieldDirectorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldDirectorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldDirectorActionPerformed
+
+    private void TextFieldActorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldActorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldActorActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if(films.existe(TextFieldTitulo.getText())){
+            JOptionPane.showMessageDialog(this, "Esta película ya existe", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else if(TextFieldTitulo.getText().length()<1 && TextFieldAno.getText().length()<1 &&  TextFieldDirector.getText().length()<1 &&  TextFieldActor.getText().length()<1 &&  TextFieldActriz.getText().length()<1 &&  TextFieldGen.getText().length()<1){
+            JOptionPane.showMessageDialog(this, "Alguno de los campos está vacío", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Pelicula film = new Pelicula(TextFieldTitulo.getText(), Integer.parseInt(TextFieldAno.getText()), TextFieldDirector.getText(), TextFieldActor.getText(),   TextFieldActriz.getText(), TextFieldGen.getText());
+            films.anadirPelicula(film);
+            JOptionPane.showMessageDialog(this, "La película ha sido añadida");
+            DialogAnadir.setVisible(false);
+            Iterator<Pelicula> i = films.getListaPeliculas().iterator();  
+            while (i.hasNext()){
+                ComboPelis.addItem(i.next().getTitulo());// Asi salen los titulos en el combobox
+            }
+            DialogPelis.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void bAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_bAceptActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -518,6 +1006,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BAnadirpeli;
+    private javax.swing.JButton BCompartir;
+    private javax.swing.JButton BCritica;
+    private javax.swing.JButton BVerpeli;
+    private javax.swing.JComboBox<String> ComboPelis;
+    private javax.swing.JDialog DialogAnadir;
+    private javax.swing.JDialog DialogCompartir;
+    private javax.swing.JDialog DialogPelis;
+    private javax.swing.JDialog DialogVerPeli;
+    private javax.swing.JTextField TextFieldActor;
+    private javax.swing.JTextField TextFieldActriz;
+    private javax.swing.JTextField TextFieldAno;
+    private javax.swing.JTextField TextFieldDirector;
+    private javax.swing.JTextField TextFieldGen;
+    private javax.swing.JTextField TextFieldTitulo;
+    private javax.swing.JButton bAcept;
     private javax.swing.JButton bCerrarSesion;
     private javax.swing.JButton bCompartirTodo;
     private javax.swing.JButton bJugar;
@@ -528,9 +1032,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog dialogoPreguntas;
     private javax.swing.JDialog dialogoTrivia;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JComboBox<String> jComboAQuien;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -541,6 +1064,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lActor;
+    private javax.swing.JLabel lActriz;
+    private javax.swing.JLabel lAnno;
+    private javax.swing.JLabel lDir;
+    private javax.swing.JLabel lGen;
+    private javax.swing.JLabel lTitulo;
     private javax.swing.JLabel labelContrincante;
     private javax.swing.JLabel preguntaNumero;
     private javax.swing.JTextArea textoMuro;
