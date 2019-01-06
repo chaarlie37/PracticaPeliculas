@@ -97,8 +97,8 @@ public class Usuarios{
         return usu;
     }
 
-    public Usuario usuarioAleatorio(Usuario usuario, HashSet<Usuario> set){                 // coger un usuario aleatorio menos "usuario"
-        HashSet<Usuario> nuevoHashSet = set;        //copia del set
+    public Usuario usuarioAleatorio(Usuario usuario){                 // coger un usuario aleatorio menos "usuario"
+        HashSet<Usuario> nuevoHashSet = listaUsuarios;        //copia del set
         Object[] lista = nuevoHashSet.toArray();
         Usuario usuarioDevuelto; 
         do{
