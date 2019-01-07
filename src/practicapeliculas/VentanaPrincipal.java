@@ -96,6 +96,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lActriz = new javax.swing.JLabel();
         lGen = new javax.swing.JLabel();
         bAcept = new javax.swing.JButton();
+        DialogListaAmigos = new javax.swing.JDialog();
+        jComboLAmigos = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jBotonVerAmigo = new javax.swing.JButton();
+        DialogListaSolicit = new javax.swing.JDialog();
+        jLabelSolitudes = new javax.swing.JLabel();
+        jComboSolicitudes = new javax.swing.JComboBox<>();
+        jButtonAcept = new javax.swing.JButton();
+        jButtonRech = new javax.swing.JButton();
+        DialogVerAmigo = new javax.swing.JDialog();
+        jPanel2 = new javax.swing.JPanel();
+        jLabelMuroAmigo = new javax.swing.JLabel();
+        jLabelNombreAmigo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bCompartirTodo = new javax.swing.JButton();
@@ -234,6 +247,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         dialogoPreguntas.getAccessibleContext().setAccessibleParent(dialogoTrivia);
 
+        DialogPelis.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        DialogPelis.setMinimumSize(new java.awt.Dimension(400, 300));
+
         BAnadirpeli.setText("Añadir pelicula");
         BAnadirpeli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,6 +326,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        DialogCompartir.setMinimumSize(new java.awt.Dimension(308, 300));
+
         jButton2.setText("Compartir");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -352,6 +370,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jButton2)
                 .addContainerGap(105, Short.MAX_VALUE))
         );
+
+        DialogAnadir.setMinimumSize(new java.awt.Dimension(400, 300));
 
         TextFieldAno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -466,6 +486,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
+        DialogVerPeli.setMinimumSize(new java.awt.Dimension(408, 301));
+
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel13.setText("VER PELICULA");
 
@@ -566,6 +588,143 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bAcept)
                 .addGap(25, 25, 25))
+        );
+
+        DialogListaAmigos.setMinimumSize(new java.awt.Dimension(207, 296));
+
+        jComboLAmigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboLAmigosActionPerformed(evt);
+            }
+        });
+
+        jLabel20.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel20.setText("Amigos");
+
+        jBotonVerAmigo.setText("Ver amigo");
+        jBotonVerAmigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotonVerAmigoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogListaAmigosLayout = new javax.swing.GroupLayout(DialogListaAmigos.getContentPane());
+        DialogListaAmigos.getContentPane().setLayout(DialogListaAmigosLayout);
+        DialogListaAmigosLayout.setHorizontalGroup(
+            DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogListaAmigosLayout.createSequentialGroup()
+                .addContainerGap(52, Short.MAX_VALUE)
+                .addComponent(jBotonVerAmigo)
+                .addGap(67, 67, 67))
+            .addGroup(DialogListaAmigosLayout.createSequentialGroup()
+                .addGap(67, 67, 67)
+                .addGroup(DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboLAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        DialogListaAmigosLayout.setVerticalGroup(
+            DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogListaAmigosLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jComboLAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBotonVerAmigo)
+                .addContainerGap(129, Short.MAX_VALUE))
+        );
+
+        DialogListaSolicit.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        DialogListaSolicit.setMinimumSize(new java.awt.Dimension(305, 300));
+
+        jLabelSolitudes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabelSolitudes.setText("Solicitudes de amistad");
+
+        jButtonAcept.setText("Aceptar");
+        jButtonAcept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAceptActionPerformed(evt);
+            }
+        });
+
+        jButtonRech.setText("Rechazar");
+        jButtonRech.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRechActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout DialogListaSolicitLayout = new javax.swing.GroupLayout(DialogListaSolicit.getContentPane());
+        DialogListaSolicit.getContentPane().setLayout(DialogListaSolicitLayout);
+        DialogListaSolicitLayout.setHorizontalGroup(
+            DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogListaSolicitLayout.createSequentialGroup()
+                .addGroup(DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogListaSolicitLayout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabelSolitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DialogListaSolicitLayout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jComboSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(DialogListaSolicitLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButtonAcept, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonRech, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        DialogListaSolicitLayout.setVerticalGroup(
+            DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogListaSolicitLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabelSolitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jComboSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAcept, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonRech, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(113, Short.MAX_VALUE))
+        );
+
+        DialogVerAmigo.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        DialogVerAmigo.setMinimumSize(new java.awt.Dimension(591, 300));
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelMuroAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabelMuroAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+        );
+
+        jLabelNombreAmigo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+
+        javax.swing.GroupLayout DialogVerAmigoLayout = new javax.swing.GroupLayout(DialogVerAmigo.getContentPane());
+        DialogVerAmigo.getContentPane().setLayout(DialogVerAmigoLayout);
+        DialogVerAmigoLayout.setHorizontalGroup(
+            DialogVerAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(DialogVerAmigoLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(DialogVerAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNombreAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
+        );
+        DialogVerAmigoLayout.setVerticalGroup(
+            DialogVerAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerAmigoLayout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabelNombreAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -709,17 +868,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        VentanaListaAmigos vA = new VentanaListaAmigos();
-        Iterator <Usuario> iter = user.getLista_amigos().iterator();
-        Usuario usuar = new Usuario();
-        //iterator para el combobox
-        while(iter.hasNext()){
-            usuar = iter.next();
-            vA.getjComboLAmigos().addItem(usuar.getNombre());
-        }
-        vA.setuser(user);
-                
-        vA.setVisible(true);
+
+        for(Usuario usuar: user.getLista_amigos()){
+            jComboLAmigos.addItem(usuar.getNombre());
+        }     
+        DialogListaAmigos.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void botonJugarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarPartidaActionPerformed
@@ -743,13 +896,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_bVerPeliculasActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        VentanaSolicitudes vS = new VentanaSolicitudes();
+
         //Recorrido de la lista de solicitudes para meterla en el comboBox
         for (Usuario u: user.getSolicitudes_amigos_pendientes()){
-            vS.getjComboSolicitudes().addItem(u.getNombre());
+            jComboSolicitudes.addItem(u.getNombre());
         }
-        vS.setUser(this.user);
-        vS.setVisible(true);
+        DialogListaSolicit.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
@@ -929,9 +1081,52 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void bAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
+
+        DialogVerPeli.setVisible(false);
+        this.setVisible(true);
     }//GEN-LAST:event_bAceptActionPerformed
+
+    private void jComboLAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboLAmigosActionPerformed
+
+    }//GEN-LAST:event_jComboLAmigosActionPerformed
+
+    private void jBotonVerAmigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonVerAmigoActionPerformed
+
+        Usuario amigo = new Usuario();
+        String name = (String) jComboLAmigos.getSelectedItem();
+        
+        for(Usuario aux: user.getLista_amigos()){//forEach para buscar en la lista de amigos cual es el que se ha seleccionado
+            if (aux.getNombre().equals(name)){
+                amigo = aux;
+            }
+        }
+        jLabelNombreAmigo.setText("Muro de " + amigo.getNombre());
+        jLabelMuroAmigo.setText(amigo.getMuro().toString());
+        DialogVerAmigo.setVisible(true);
+        DialogListaAmigos.setVisible(false);
+
+    }//GEN-LAST:event_jBotonVerAmigoActionPerformed
+
+    private void jButtonAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptActionPerformed
+        for(Usuario u: user.getSolicitudes_amigos_pendientes()){
+            if(jComboSolicitudes.getSelectedItem().equals(u.getNombre())){
+                user.aceptarInvitacion(u);
+                jComboSolicitudes.remove(jComboSolicitudes.getSelectedIndex());
+                JOptionPane.showMessageDialog(null, "Has aceptado la solicitud de amistad del usuario " + u.getNombre());
+            }
+        }
+
+    }//GEN-LAST:event_jButtonAceptActionPerformed
+
+    private void jButtonRechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRechActionPerformed
+        for(Usuario u: user.getSolicitudes_amigos_pendientes()){
+            if(jComboSolicitudes.getSelectedItem().equals(u.getNombre())){
+                user.rechazarInvitacion(u);
+                jComboSolicitudes.remove(jComboSolicitudes.getSelectedIndex());
+                JOptionPane.showMessageDialog(null, "La solicitud de amistad del usuario " + u.getNombre() + " ha sido rechazada.");
+            }
+        }
+    }//GEN-LAST:event_jButtonRechActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1013,7 +1208,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboPelis;
     private javax.swing.JDialog DialogAnadir;
     private javax.swing.JDialog DialogCompartir;
+    private javax.swing.JDialog DialogListaAmigos;
+    private javax.swing.JDialog DialogListaSolicit;
     private javax.swing.JDialog DialogPelis;
+    private javax.swing.JDialog DialogVerAmigo;
     private javax.swing.JDialog DialogVerPeli;
     private javax.swing.JTextField TextFieldActor;
     private javax.swing.JTextField TextFieldActriz;
@@ -1031,10 +1229,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem botonJugarPartida;
     private javax.swing.JDialog dialogoPreguntas;
     private javax.swing.JDialog dialogoTrivia;
+    private javax.swing.JButton jBotonVerAmigo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonAcept;
+    private javax.swing.JButton jButtonRech;
     private javax.swing.JComboBox<String> jComboAQuien;
+    private javax.swing.JComboBox<String> jComboLAmigos;
+    private javax.swing.JComboBox<String> jComboSolicitudes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1047,6 +1250,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1054,6 +1258,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelMuroAmigo;
+    private javax.swing.JLabel jLabelNombreAmigo;
+    private javax.swing.JLabel jLabelSolitudes;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1062,6 +1269,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lActor;
