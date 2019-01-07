@@ -1,8 +1,7 @@
 /**
  * Ultima actualizacion: 30/12/2018
- * Cambios: (Por Carlos Sánchez Muñoz) Ventana principal, el muro de cada user
- *          (Por Mario) Anadido el metodo para abrir la ventana de las solicitudes de amirtad
- * Version:4
+ * Cambios: (Pasado a jDialog las ventanas de lista de amigos, ver amigo, solicitudes de amistad, peliculas, añadir pelicula, ver pelicula y compartir pelicula.
+ * Version:5
  *
  */
 
