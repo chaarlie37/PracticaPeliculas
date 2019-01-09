@@ -1,7 +1,8 @@
 package practicapeliculas;
 import java.util.ArrayList;
+import java.io.*;
 
-public class Pelicula implements Compartible {
+public class Pelicula implements Compartible, Serializable {
     private String titulo;
     private int ano;
     private String director;

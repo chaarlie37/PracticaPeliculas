@@ -10,8 +10,9 @@ package practicapeliculas;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.io.*;
 
-public class Usuario{
+public class Usuario implements Serializable{
     private String nombre;
     private String contrasena;
     private StringBuilder muro;
@@ -126,8 +127,8 @@ public class Usuario{
     public StringBuilder getMuro() {
         return muro;
     }
-    /*
-    public void invitarAmigo(Usuario u, Usuarios users){
+    
+    public void invitarAmigo(Usuario u){
         //Bucle for que recorre el array de usuarios para encontrar el usuario al que se quiere invitar
         for (Usuario aux: users.getListaUsuarios()){
             if (u.getNombre().equals( aux.getNombre())){
@@ -136,7 +137,7 @@ public class Usuario{
         }
 
     }
-*/
+
     public void aceptarInvitacion(Usuario u){
         u.lista_amigos.add(this);
         this.lista_amigos.add(u);

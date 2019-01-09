@@ -14,9 +14,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Iterator;
 import java.util.HashSet;
+import java.io.*;
 
 
-public class Usuarios{
+public class Usuarios implements Serializable{
     private HashSet<Usuario> listaUsuarios = new HashSet<Usuario>();
     private Peliculas films;
 

@@ -215,6 +215,7 @@ public class VentanaDatos extends javax.swing.JFrame {
                 FileOutputStream output = new FileOutputStream(ruta);
                 films.WritePeliculas(output);
                 JOptionPane.showMessageDialog(this, "Se ha guardado el archivo " + ruta + " correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
             }catch(IOException ex){
                 JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
             }            
