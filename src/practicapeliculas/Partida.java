@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 public class Partida implements Compartible, Serializable {
 
-    private static int numeroPartidas = 0;
+    private static int contadorPartidas;
     private Pregunta preguntaActual;
     private int identificador;
     private Usuario ganador;
@@ -34,8 +34,8 @@ public class Partida implements Compartible, Serializable {
         contadorPreguntas = 0;
         preguntaActual = listaPreguntas[contadorPreguntas];
         puntosTotales = 0;
-        numeroPartidas++;
-        identificador = numeroPartidas;
+        contadorPartidas++;
+        identificador = contadorPartidas;
         ptos_jugador1 = 0;
         ptos_jugador2 = 0;
     }

@@ -180,12 +180,12 @@ public class Usuario implements Serializable{
         c.compartir(u);
     }
 
-    public void compartirPartida(Partida p){
-        p.compartir(lista_amigos);
+    public void compartirPartida(Partida pe){
+        pe.compartir(lista_amigos);
     }
 
-    public void compartirPartida(Partida p, Usuario u){
-        p.compartir(u);
+    public void compartirPartida(Partida pe, Usuario u){
+        pe.compartir(u);
     }
 
     public void compartirTodo(){
@@ -220,6 +220,7 @@ public class Usuario implements Serializable{
 
     public void añadirCritica(Critica c, Pelicula p){
         p.anadirCritica(c);
+        setMuro(new StringBuilder(c.mostrarCritica()));
     }
 
     public Partida iniciarPartida(Usuario u){
