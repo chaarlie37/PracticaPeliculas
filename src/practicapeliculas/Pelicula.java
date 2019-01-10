@@ -1,14 +1,18 @@
 package practicapeliculas;
 import java.util.ArrayList;
 import java.io.*;
+import java.util.HashSet;
+import java.util.Iterator;
 
-public class Pelicula implements Compartible, Serializable {
+public class Pelicula implements Compartible, Serializable{
     private String titulo;
     private int ano;
     private String director;
     private String actor;
     private String actriz;
     private String genero;
+    private HashSet<Critica> listaCriticas;
+    
 
     // se olvidó el constructor, he hecho uno incompleto para hacer pruebas
     public Pelicula(String titulo, int ano, String director, String actor, String actriz, String genero){
@@ -18,6 +22,7 @@ public class Pelicula implements Compartible, Serializable {
         this.actor = actor; 
         this.actriz = actriz; 
         this.genero = genero; 
+        listaCriticas = new HashSet<>();
     }
     
     public Pelicula(String titulo){
@@ -54,15 +59,29 @@ public class Pelicula implements Compartible, Serializable {
 
     @Override
     public String toString(){
-        return ("Titulo: " + titulo +  "\n Año: " + ano + "\n Director: " + director + "\n Actor: " + actor + "\n Actriz: " + actriz);
+        return ("PELICULA \nTitulo: " + titulo +  "\n Año: " + ano + "\n Director: " + director + "\n Actor: " + actor + "\n Actriz: " + actriz);
     }
   
     @Override
     public void compartir (Usuario u){
+        StringBuilder texto = new StringBuilder(this.toString());
+        u.setMuro(texto);
     }
     
-   @Override
-   
+    @Override
+    public void compartir(ArrayList<Usuario> usuarios) {
+        StringBuilder texto = new StringBuilder(this.toString());
+        Iterator<Usuario> it = usuarios.iterator();
+        while (it.hasNext()) {
+            it.next().setMuro(texto);
+        }
+    }
+    
+    public void anadirCritica(Critica c){
+        listaCriticas.add(c);
+    }
+    
+   @Override   
    public boolean equals(Object o){
        if (o == null)
            return false; 
@@ -74,7 +93,13 @@ public class Pelicula implements Compartible, Serializable {
        return (film.getTitulo().equals(this.getTitulo())); 
    }
     
-    @Override
-    public void compartir(ArrayList<Usuario> usuarios) {
+    public HashSet<Critica> getListaCriticas() {
+        return listaCriticas;
     }
+
+    public void setListaCriticas(HashSet<Critica> listaCriticas) {
+        this.listaCriticas = listaCriticas;
+    }
+    
+    
 }

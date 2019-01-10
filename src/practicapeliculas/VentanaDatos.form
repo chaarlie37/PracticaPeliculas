@@ -11,7 +11,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="botonGuardarPeliculas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Guardar pel&#xed;culas..."/>
+                <Property name="text" type="java.lang.String" value="Guardar sistema..."/>
                 <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
               <Events>
@@ -20,26 +20,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="botonCargarPeliculas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cargar pel&#xed;culas..."/>
+                <Property name="text" type="java.lang.String" value="Cargar sistema..."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCargarPeliculasActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="botonGuardarUsuarios">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Guardar usuarios..."/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarUsuariosActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="botonCargarUsuarios">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cargar usuarios..."/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonCargarUsuariosActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -71,28 +55,33 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
-              <Component id="nombreUsuario" min="-2" pref="120" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="81" pref="81" max="-2" attributes="0"/>
-              <Component id="campoPass" min="-2" pref="120" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="128" pref="128" max="-2" attributes="0"/>
-              <Component id="bIniciarSesion" min="-2" pref="116" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="128" pref="128" max="-2" attributes="0"/>
-              <Component id="bRegistrarse" min="-2" pref="116" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" attributes="0">
-              <EmptySpace min="178" pref="178" max="-2" attributes="0"/>
-              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
+                      <Component id="nombreUsuario" min="-2" pref="120" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="57" pref="57" max="-2" attributes="0"/>
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="81" pref="81" max="-2" attributes="0"/>
+                      <Component id="campoPass" min="-2" pref="120" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="128" pref="128" max="-2" attributes="0"/>
+                      <Component id="bIniciarSesion" min="-2" pref="116" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="128" pref="128" max="-2" attributes="0"/>
+                      <Component id="bRegistrarse" min="-2" pref="116" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="178" pref="178" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="60" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -121,6 +110,7 @@
               <Component id="bRegistrarse" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="20" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

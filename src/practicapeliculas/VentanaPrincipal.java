@@ -1,20 +1,14 @@
-/**
- * Ultima actualizacion: 30/12/2018
- * Cambios: (Pasado a jDialog las ventanas de lista de amigos, ver amigo, solicitudes de amistad, peliculas, añadir pelicula, ver pelicula y compartir pelicula.
- * Version:5
- *
- */
-
 package practicapeliculas;
 
-import java.util.Iterator;
-import javax.swing.JDialog;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JFileChooser;
+import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-/**
- *
- * @author carlo
- */
 public class VentanaPrincipal extends javax.swing.JFrame {
 
     /**
@@ -26,6 +20,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private Usuarios users;
     private Peliculas films;
     private Partida partida;
+    private Clasificacion ranking;
+    private int tipoACompartir;
     
     public VentanaPrincipal() {
         initComponents();
@@ -40,6 +36,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         dialogoTrivia = new javax.swing.JDialog();
         bJugar = new javax.swing.JButton();
@@ -47,13 +44,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         labelContrincante = new javax.swing.JLabel();
         dialogoPreguntas = new javax.swing.JDialog();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textoPistas = new javax.swing.JTextArea();
         textoPregunta = new javax.swing.JLabel();
         bResponder = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         preguntaNumero = new javax.swing.JLabel();
         textoRespuesta = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textoPistas = new javax.swing.JTextArea();
         DialogPelis = new javax.swing.JDialog();
         BAnadirpeli = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -62,7 +59,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         BCritica = new javax.swing.JButton();
         BVerpeli = new javax.swing.JButton();
         DialogCompartir = new javax.swing.JDialog();
-        jButton2 = new javax.swing.JButton();
+        bCompartir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jComboAQuien = new javax.swing.JComboBox<>();
         DialogAnadir = new javax.swing.JDialog();
@@ -75,7 +72,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         TextFieldGen = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        bAnadirPelicula = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -105,13 +102,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButtonAcept = new javax.swing.JButton();
         jButtonRech = new javax.swing.JButton();
         DialogVerAmigo = new javax.swing.JDialog();
-        jPanel2 = new javax.swing.JPanel();
-        jLabelMuroAmigo = new javax.swing.JLabel();
         jLabelNombreAmigo = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        textoMuroAmigo = new javax.swing.JTextArea();
         DialogEnviarSolicitud = new javax.swing.JDialog();
         jLabel21 = new javax.swing.JLabel();
         jComboNoAmigos = new javax.swing.JComboBox<>();
         jButton4 = new javax.swing.JButton();
+        dialogoPartidasPendientes = new javax.swing.JDialog();
+        jLabel22 = new javax.swing.JLabel();
+        comboPartidasPendientes = new javax.swing.JComboBox<>();
+        bJugarPendiente = new javax.swing.JButton();
+        dialogoRanking = new javax.swing.JDialog();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textoRanking = new javax.swing.JTextArea();
+        jLabel23 = new javax.swing.JLabel();
+        comboOrdenarClasificacion = new javax.swing.JComboBox<>();
+        bAceptarClasificacion = new javax.swing.JButton();
+        comboUsersClasificacion = new javax.swing.JComboBox<>();
+        bVerDetallePartida = new javax.swing.JButton();
+        bActualizar = new javax.swing.JButton();
+        bVolcarTXT = new javax.swing.JButton();
+        dialogoCritica = new javax.swing.JDialog();
+        comboPelisCriticas = new javax.swing.JComboBox<>();
+        BVer = new javax.swing.JButton();
+        BCompartir1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textoCriticas = new javax.swing.JTextArea();
+        comboCriticas = new javax.swing.JComboBox<>();
+        dialogoEscribirCritica = new javax.swing.JDialog();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        BAcept = new javax.swing.JButton();
+        tPuntuacion = new javax.swing.JTextField();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tDescr = new javax.swing.JTextArea();
+        jLabel26 = new javax.swing.JLabel();
+        dialogoPartidasTerminadas = new javax.swing.JDialog();
+        comboPartidasTerminadas = new javax.swing.JComboBox<>();
+        bCompartirPartida = new javax.swing.JButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        textoResultadoPartida = new javax.swing.JTextArea();
+        bVerPartida = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         bCompartirTodo = new javax.swing.JButton();
@@ -121,16 +153,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         textoMuro = new javax.swing.JTextArea();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        bAmigos = new javax.swing.JMenu();
+        bVerAmigos = new javax.swing.JMenuItem();
+        bSolicitudes = new javax.swing.JMenuItem();
+        bEnviarSolicitud = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         botonJugarPartida = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        bPartidasPendientes = new javax.swing.JMenuItem();
+        bPartidasTerminadas = new javax.swing.JMenuItem();
+        bClasificacion = new javax.swing.JMenuItem();
 
         dialogoTrivia.setBounds(new java.awt.Rectangle(0, 0, 500, 500));
+        dialogoTrivia.setResizable(false);
+        dialogoTrivia.setSize(new java.awt.Dimension(600, 600));
+        dialogoTrivia.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         bJugar.setText("JUGAR");
         bJugar.addActionListener(new java.awt.event.ActionListener() {
@@ -138,6 +174,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 bJugarActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 30;
+        gridBagConstraints.ipady = 24;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(37, 137, 0, 0);
+        dialogoTrivia.getContentPane().add(bJugar, gridBagConstraints);
 
         jButton1.setText("Cancelar partida");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -145,56 +190,36 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(97, 6, 6, 6);
+        dialogoTrivia.getContentPane().add(jButton1, gridBagConstraints);
 
         jLabel2.setText("Contrincante:");
+        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(73, 148, 0, 0);
+        dialogoTrivia.getContentPane().add(jLabel2, gridBagConstraints);
 
+        labelContrincante.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         labelContrincante.setText("<contricante>");
-
-        javax.swing.GroupLayout dialogoTriviaLayout = new javax.swing.GroupLayout(dialogoTrivia.getContentPane());
-        dialogoTrivia.getContentPane().setLayout(dialogoTriviaLayout);
-        dialogoTriviaLayout.setHorizontalGroup(
-            dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoTriviaLayout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
-                .addGroup(dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelContrincante)
-                    .addGroup(dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoTriviaLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(161, 161, 161))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoTriviaLayout.createSequentialGroup()
-                            .addComponent(jButton1)
-                            .addContainerGap()))))
-            .addGroup(dialogoTriviaLayout.createSequentialGroup()
-                .addGap(151, 151, 151)
-                .addComponent(bJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        dialogoTriviaLayout.setVerticalGroup(
-            dialogoTriviaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(dialogoTriviaLayout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(jLabel2)
-                .addGap(31, 31, 31)
-                .addComponent(labelContrincante)
-                .addGap(31, 31, 31)
-                .addComponent(bJugar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 127, 0, 0);
+        dialogoTrivia.getContentPane().add(labelContrincante, gridBagConstraints);
 
         dialogoPreguntas.setTitle("Trivia");
-
-        textoPistas.setEditable(false);
-        textoPistas.setBackground(new java.awt.Color(255, 255, 255));
-        textoPistas.setColumns(20);
-        textoPistas.setForeground(new java.awt.Color(255, 255, 255));
-        textoPistas.setLineWrap(true);
-        textoPistas.setRows(5);
-        textoPistas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        textoPistas.setOpaque(false);
-        jScrollPane1.setViewportView(textoPistas);
+        dialogoPreguntas.setResizable(false);
+        dialogoPreguntas.setSize(new java.awt.Dimension(700, 700));
 
         textoPregunta.setText("<pregunta>");
 
@@ -216,43 +241,62 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        textoPistas.setEditable(false);
+        textoPistas.setColumns(20);
+        textoPistas.setRows(5);
+        jScrollPane3.setViewportView(textoPistas);
+
         javax.swing.GroupLayout dialogoPreguntasLayout = new javax.swing.GroupLayout(dialogoPreguntas.getContentPane());
         dialogoPreguntas.getContentPane().setLayout(dialogoPreguntasLayout);
         dialogoPreguntasLayout.setHorizontalGroup(
             dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogoPreguntasLayout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addGroup(dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jLabel3)
-                    .addComponent(bResponder)
-                    .addComponent(preguntaNumero)
-                    .addComponent(textoPregunta)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGroup(dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(preguntaNumero))
+                    .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(textoPregunta))
+                    .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                        .addGap(217, 217, 217)
+                        .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                        .addGap(264, 264, 264)
+                        .addComponent(bResponder))
+                    .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                        .addGap(291, 291, 291)
+                        .addComponent(jLabel3))
+                    .addGroup(dialogoPreguntasLayout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(203, Short.MAX_VALUE))
         );
         dialogoPreguntasLayout.setVerticalGroup(
             dialogoPreguntasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(dialogoPreguntasLayout.createSequentialGroup()
-                .addContainerGap(122, Short.MAX_VALUE)
+                .addGap(58, 58, 58)
                 .addComponent(preguntaNumero)
                 .addGap(18, 18, 18)
                 .addComponent(textoPregunta)
-                .addGap(37, 37, 37)
-                .addComponent(textoRespuesta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(55, 55, 55)
+                .addComponent(textoRespuesta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(bResponder)
-                .addGap(27, 27, 27)
+                .addGap(67, 67, 67)
                 .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         dialogoPreguntas.getAccessibleContext().setAccessibleParent(dialogoTrivia);
 
         DialogPelis.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DialogPelis.setMinimumSize(new java.awt.Dimension(400, 300));
+        DialogPelis.setResizable(false);
+        DialogPelis.setSize(new java.awt.Dimension(400, 332));
+        DialogPelis.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         BAnadirpeli.setText("Añadir pelicula");
         BAnadirpeli.addActionListener(new java.awt.event.ActionListener() {
@@ -260,14 +304,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 BAnadirpeliActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipady = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(44, 107, 0, 36);
+        DialogPelis.getContentPane().add(BAnadirpeli, gridBagConstraints);
 
-        jLabel4.setText("PELICULAS");
+        jLabel4.setText("PELÍCULAS");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 38;
+        gridBagConstraints.ipady = 12;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(35, 22, 0, 0);
+        DialogPelis.getContentPane().add(jLabel4, gridBagConstraints);
 
         ComboPelis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ComboPelisActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 82;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(29, 28, 0, 0);
+        DialogPelis.getContentPane().add(ComboPelis, gridBagConstraints);
 
         BCompartir.setText("Compartir...");
         BCompartir.addActionListener(new java.awt.event.ActionListener() {
@@ -275,6 +343,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 BCompartirActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.ipadx = 19;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 28, 0, 0);
+        DialogPelis.getContentPane().add(BCompartir, gridBagConstraints);
 
         BCritica.setText("Realizar crítica");
         BCritica.addActionListener(new java.awt.event.ActionListener() {
@@ -282,6 +357,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 BCriticaActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 28, 0, 0);
+        DialogPelis.getContentPane().add(BCritica, gridBagConstraints);
 
         BVerpeli.setText("Ver");
         BVerpeli.addActionListener(new java.awt.event.ActionListener() {
@@ -289,93 +371,60 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 BVerpeliActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout DialogPelisLayout = new javax.swing.GroupLayout(DialogPelis.getContentPane());
-        DialogPelis.getContentPane().setLayout(DialogPelisLayout);
-        DialogPelisLayout.setHorizontalGroup(
-            DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DialogPelisLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(BVerpeli, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BCompartir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BCritica, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ComboPelis, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
-                .addComponent(BAnadirpeli)
-                .addGap(36, 36, 36))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogPelisLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(133, 133, 133))
-        );
-        DialogPelisLayout.setVerticalGroup(
-            DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DialogPelisLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(ComboPelis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(DialogPelisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(DialogPelisLayout.createSequentialGroup()
-                        .addComponent(BCompartir)
-                        .addGap(18, 18, 18)
-                        .addComponent(BCritica)
-                        .addGap(18, 18, 18)
-                        .addComponent(BVerpeli))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogPelisLayout.createSequentialGroup()
-                        .addComponent(BAnadirpeli, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)))
-                .addContainerGap(32, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.ipadx = 65;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 28, 64, 0);
+        DialogPelis.getContentPane().add(BVerpeli, gridBagConstraints);
 
         DialogCompartir.setMinimumSize(new java.awt.Dimension(308, 300));
+        DialogCompartir.setResizable(false);
+        DialogCompartir.setSize(new java.awt.Dimension(308, 300));
+        DialogCompartir.getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jButton2.setText("Compartir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        bCompartir.setText("Compartir");
+        bCompartir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                bCompartirActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(67, 107, 60, 0);
+        DialogCompartir.getContentPane().add(bCompartir, gridBagConstraints);
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel5.setText("Compartir con");
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setText("Compartir con:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipady = 27;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(51, 105, 0, 0);
+        DialogCompartir.getContentPane().add(jLabel5, gridBagConstraints);
 
         jComboAQuien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboAQuienActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout DialogCompartirLayout = new javax.swing.GroupLayout(DialogCompartir.getContentPane());
-        DialogCompartir.getContentPane().setLayout(DialogCompartirLayout);
-        DialogCompartirLayout.setHorizontalGroup(
-            DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DialogCompartirLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(DialogCompartirLayout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
-                    .addGroup(DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jComboAQuien, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(84, Short.MAX_VALUE))
-        );
-        DialogCompartirLayout.setVerticalGroup(
-            DialogCompartirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DialogCompartirLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jComboAQuien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton2)
-                .addContainerGap(105, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 138;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(18, 66, 0, 71);
+        DialogCompartir.getContentPane().add(jComboAQuien, gridBagConstraints);
 
         DialogAnadir.setMinimumSize(new java.awt.Dimension(400, 300));
+        DialogAnadir.setResizable(false);
+        DialogAnadir.setSize(new java.awt.Dimension(400, 315));
 
         TextFieldAno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -401,10 +450,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel8.setText("Año:");
 
-        jButton3.setText("Añadir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        bAnadirPelicula.setText("Añadir");
+        bAnadirPelicula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                bAnadirPeliculaActionPerformed(evt);
             }
         });
 
@@ -420,80 +469,92 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DialogAnadir.getContentPane().setLayout(DialogAnadirLayout);
         DialogAnadirLayout.setHorizontalGroup(
             DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogAnadirLayout.createSequentialGroup()
+                .addContainerGap(154, Short.MAX_VALUE)
+                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel6))
+                    .addGroup(DialogAnadirLayout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(TextFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TextFieldActriz, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(TextFieldGen, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(26, 26, 26))
             .addGroup(DialogAnadirLayout.createSequentialGroup()
-                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DialogAnadirLayout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TextFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(DialogAnadirLayout.createSequentialGroup()
                                 .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel8))
-                                .addGap(18, 18, 18)
+                                .addGap(31, 31, 31)
                                 .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(TextFieldTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
-                                    .addComponent(TextFieldAno)))
-                            .addGroup(DialogAnadirLayout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TextFieldDirector, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)))
+                                    .addComponent(TextFieldAno, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(TextFieldTitulo)))))
                     .addGroup(DialogAnadirLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addGap(13, 13, 13)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TextFieldActor, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE)
-                    .addComponent(TextFieldActriz)
-                    .addComponent(TextFieldGen))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogAnadirLayout.createSequentialGroup()
-                .addGap(0, 176, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(157, 157, 157))
+                        .addGap(165, 165, 165)
+                        .addComponent(bAnadirPelicula)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         DialogAnadirLayout.setVerticalGroup(
             DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DialogAnadirLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DialogAnadirLayout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
                         .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel10)
-                            .addComponent(TextFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11))
                         .addGap(20, 20, 20)
                         .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel11)
-                            .addComponent(TextFieldActriz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel9)
+                            .addComponent(TextFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12)
+                            .addComponent(TextFieldGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(DialogAnadirLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(TextFieldTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(TextFieldAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(24, 24, 24)
-                .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12)
-                    .addComponent(TextFieldDirector, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextFieldGen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(jButton3)
-                .addContainerGap(25, Short.MAX_VALUE))
+                        .addGap(97, 97, 97)
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(TextFieldActor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(DialogAnadirLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addComponent(jLabel8))
+                            .addGroup(DialogAnadirLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(TextFieldActriz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(bAnadirPelicula)
+                .addGap(38, 38, 38))
         );
 
         DialogVerPeli.setMinimumSize(new java.awt.Dimension(408, 301));
+        DialogVerPeli.setResizable(false);
+        DialogVerPeli.setSize(new java.awt.Dimension(584, 427));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel13.setText("VER PELICULA");
+        jLabel13.setText("PELICULA");
 
         jLabel14.setText("TITULO");
 
@@ -501,11 +562,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel16.setText("DIRECTOR/A");
 
-        lTitulo.setText("jLabel5");
+        lTitulo.setText("titulo");
 
-        lAnno.setText("jLabel6");
+        lAnno.setText("año");
 
-        lDir.setText("jLabel7");
+        lDir.setText("director");
 
         jLabel17.setText("ACTOR");
 
@@ -513,11 +574,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel19.setText("GÉNERO");
 
-        lActor.setText("jLabel11");
+        lActor.setText("actor");
 
-        lActriz.setText("jLabel12");
+        lActriz.setText("actriz");
 
-        lGen.setText("jLabel13");
+        lGen.setText("genero");
 
         bAcept.setText("ACEPTAR");
         bAcept.addActionListener(new java.awt.event.ActionListener() {
@@ -530,71 +591,79 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DialogVerPeli.getContentPane().setLayout(DialogVerPeliLayout);
         DialogVerPeliLayout.setHorizontalGroup(
             DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
+            .addGroup(DialogVerPeliLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel16))
                     .addGroup(DialogVerPeliLayout.createSequentialGroup()
-                        .addGap(49, 49, 49)
                         .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel14)
-                            .addComponent(jLabel15))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lAnno)
-                    .addComponent(lTitulo)
-                    .addComponent(lDir))
-                .addGap(57, 57, 57)
-                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel17))
-                .addGap(65, 65, 65)
-                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lGen)
-                    .addComponent(lActriz)
-                    .addComponent(lActor))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(34, 34, 34)
+                        .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(DialogVerPeliLayout.createSequentialGroup()
+                                .addComponent(lAnno, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(lDir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lGen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(DialogVerPeliLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel17))
+                        .addGap(34, 34, 34)
+                        .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lActor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lActriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(54, 54, 54))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addGap(179, 179, 179))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerPeliLayout.createSequentialGroup()
-                        .addComponent(bAcept)
-                        .addGap(210, 210, 210))))
+                .addComponent(bAcept)
+                .addGap(242, 242, 242))
+            .addGroup(DialogVerPeliLayout.createSequentialGroup()
+                .addGap(230, 230, 230)
+                .addComponent(jLabel13)
+                .addContainerGap(233, Short.MAX_VALUE))
         );
         DialogVerPeliLayout.setVerticalGroup(
             DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DialogVerPeliLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addComponent(jLabel13)
-                .addGap(27, 27, 27)
+                .addGap(46, 46, 46)
                 .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
-                    .addComponent(lTitulo)
-                    .addComponent(jLabel17)
-                    .addComponent(lActor))
-                .addGap(54, 54, 54)
+                    .addComponent(lTitulo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
-                    .addComponent(lAnno)
-                    .addComponent(jLabel18)
-                    .addComponent(lActriz))
-                .addGap(53, 53, 53)
+                    .addComponent(lAnno))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lDir)
-                    .addComponent(jLabel19)
-                    .addComponent(lGen)
                     .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(lGen))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(lActor))
+                .addGap(18, 18, 18)
+                .addGroup(DialogVerPeliLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(lActriz))
+                .addGap(64, 64, 64)
                 .addComponent(bAcept)
-                .addGap(25, 25, 25))
+                .addGap(49, 49, 49))
         );
 
         DialogListaAmigos.setMinimumSize(new java.awt.Dimension(207, 296));
+        DialogListaAmigos.setResizable(false);
+        DialogListaAmigos.setSize(new java.awt.Dimension(327, 296));
 
         jComboLAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -617,36 +686,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DialogListaAmigosLayout.setHorizontalGroup(
             DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogListaAmigosLayout.createSequentialGroup()
-                .addGroup(DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, DialogListaAmigosLayout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DialogListaAmigosLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBotonVerAmigo)))
-                .addGap(67, 67, 67))
+                .addGap(0, 78, Short.MAX_VALUE)
+                .addComponent(jComboLAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(71, 71, 71))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogListaAmigosLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jComboLAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogListaAmigosLayout.createSequentialGroup()
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogListaAmigosLayout.createSequentialGroup()
+                        .addComponent(jBotonVerAmigo)
+                        .addGap(117, 117, 117))))
         );
         DialogListaAmigosLayout.setVerticalGroup(
             DialogListaAmigosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DialogListaAmigosLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(38, 38, 38)
                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(42, 42, 42)
                 .addComponent(jComboLAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addComponent(jBotonVerAmigo)
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addGap(49, 49, 49))
         );
 
         DialogListaSolicit.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DialogListaSolicit.setMinimumSize(new java.awt.Dimension(305, 300));
+        DialogListaSolicit.setResizable(false);
+        DialogListaSolicit.setSize(new java.awt.Dimension(305, 300));
 
         jLabelSolitudes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabelSolitudes.setText("Solicitudes de amistad");
+
+        jComboSolicitudes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboSolicitudesActionPerformed(evt);
+            }
+        });
 
         jButtonAcept.setText("Aceptar");
         jButtonAcept.addActionListener(new java.awt.event.ActionListener() {
@@ -669,17 +746,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(DialogListaSolicitLayout.createSequentialGroup()
                 .addGroup(DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DialogListaSolicitLayout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(jLabelSolitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(DialogListaSolicitLayout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(26, 26, 26)
                         .addComponent(jButtonAcept, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonRech, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(DialogListaSolicitLayout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jComboSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                        .addGap(47, 47, 47)
+                        .addGroup(DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelSolitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(DialogListaSolicitLayout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jComboSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         DialogListaSolicitLayout.setVerticalGroup(
             DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -688,57 +766,59 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabelSolitudes, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jComboSolicitudes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addGroup(DialogListaSolicitLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAcept, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonRech, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addGap(29, 29, 29))
         );
 
         DialogVerAmigo.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DialogVerAmigo.setMinimumSize(new java.awt.Dimension(591, 300));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelMuroAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelMuroAmigo, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
-        );
+        DialogVerAmigo.getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabelNombreAmigo.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabelNombreAmigo.setText("Muro de...");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 296;
+        gridBagConstraints.ipady = 41;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        DialogVerAmigo.getContentPane().add(jLabelNombreAmigo, gridBagConstraints);
 
-        javax.swing.GroupLayout DialogVerAmigoLayout = new javax.swing.GroupLayout(DialogVerAmigo.getContentPane());
-        DialogVerAmigo.getContentPane().setLayout(DialogVerAmigoLayout);
-        DialogVerAmigoLayout.setHorizontalGroup(
-            DialogVerAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(DialogVerAmigoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(DialogVerAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNombreAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 412, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(97, Short.MAX_VALUE))
-        );
-        DialogVerAmigoLayout.setVerticalGroup(
-            DialogVerAmigoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogVerAmigoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelNombreAmigo, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(19, 19, 19))
-        );
+        textoMuroAmigo.setEditable(false);
+        textoMuroAmigo.setColumns(20);
+        textoMuroAmigo.setRows(5);
+        jScrollPane5.setViewportView(textoMuroAmigo);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 701;
+        gridBagConstraints.ipady = 385;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 6, 6);
+        DialogVerAmigo.getContentPane().add(jScrollPane5, gridBagConstraints);
 
         DialogEnviarSolicitud.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DialogEnviarSolicitud.setMinimumSize(new java.awt.Dimension(358, 305));
+        DialogEnviarSolicitud.setResizable(false);
+        DialogEnviarSolicitud.setSize(new java.awt.Dimension(358, 305));
 
-        jLabel21.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel21.setText("Enviar solicitud");
+        jLabel21.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel21.setText("Enviar solicitud de amistad");
+
+        jComboNoAmigos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboNoAmigosActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Enviar");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -751,30 +831,374 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DialogEnviarSolicitud.getContentPane().setLayout(DialogEnviarSolicitudLayout);
         DialogEnviarSolicitudLayout.setHorizontalGroup(
             DialogEnviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, DialogEnviarSolicitudLayout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addGroup(DialogEnviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboNoAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
             .addGroup(DialogEnviarSolicitudLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(jButton4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(DialogEnviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(DialogEnviarSolicitudLayout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(DialogEnviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(DialogEnviarSolicitudLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jComboNoAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(DialogEnviarSolicitudLayout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jButton4)))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         DialogEnviarSolicitudLayout.setVerticalGroup(
             DialogEnviarSolicitudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DialogEnviarSolicitudLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(30, 30, 30)
                 .addComponent(jComboNoAmigos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
+        );
+
+        dialogoPartidasPendientes.setResizable(false);
+        dialogoPartidasPendientes.setSize(new java.awt.Dimension(400, 300));
+
+        jLabel22.setText("Tienes partidas pendientes con:");
+
+        comboPartidasPendientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPartidasPendientesActionPerformed(evt);
+            }
+        });
+
+        bJugarPendiente.setText("Jugar");
+        bJugarPendiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bJugarPendienteActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogoPartidasPendientesLayout = new javax.swing.GroupLayout(dialogoPartidasPendientes.getContentPane());
+        dialogoPartidasPendientes.getContentPane().setLayout(dialogoPartidasPendientesLayout);
+        dialogoPartidasPendientesLayout.setHorizontalGroup(
+            dialogoPartidasPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoPartidasPendientesLayout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
+                .addGroup(dialogoPartidasPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoPartidasPendientesLayout.createSequentialGroup()
+                        .addComponent(jLabel22)
+                        .addGap(100, 100, 100))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoPartidasPendientesLayout.createSequentialGroup()
+                        .addComponent(comboPartidasPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(118, 118, 118))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoPartidasPendientesLayout.createSequentialGroup()
+                        .addComponent(bJugarPendiente)
+                        .addGap(162, 162, 162))))
+        );
+        dialogoPartidasPendientesLayout.setVerticalGroup(
+            dialogoPartidasPendientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoPartidasPendientesLayout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(jLabel22)
+                .addGap(31, 31, 31)
+                .addComponent(comboPartidasPendientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(bJugarPendiente)
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
+
+        dialogoRanking.setSize(new java.awt.Dimension(1088, 743));
+        dialogoRanking.getContentPane().setLayout(new java.awt.GridBagLayout());
+
+        textoRanking.setColumns(20);
+        textoRanking.setRows(5);
+        jScrollPane1.setViewportView(textoRanking);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 7;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 1062;
+        gridBagConstraints.ipady = 642;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.weighty = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(6, 6, 0, 0);
+        dialogoRanking.getContentPane().add(jScrollPane1, gridBagConstraints);
+
+        jLabel23.setText("Ordenar por:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(14, 6, 0, 0);
+        dialogoRanking.getContentPane().add(jLabel23, gridBagConstraints);
+
+        comboOrdenarClasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Porcentaje victorias", "Número victorias", "Puntos" }));
+        comboOrdenarClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOrdenarClasificacionActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 43;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 18, 0, 0);
+        dialogoRanking.getContentPane().add(comboOrdenarClasificacion, gridBagConstraints);
+
+        bAceptarClasificacion.setText("Aceptar");
+        bAceptarClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAceptarClasificacionActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 18, 0, 0);
+        dialogoRanking.getContentPane().add(bAceptarClasificacion, gridBagConstraints);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 5;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 95;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(9, 134, 0, 0);
+        dialogoRanking.getContentPane().add(comboUsersClasificacion, gridBagConstraints);
+
+        bVerDetallePartida.setText("Ver Detalles");
+        bVerDetallePartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVerDetallePartidaActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 6;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 12, 0, 0);
+        dialogoRanking.getContentPane().add(bVerDetallePartida, gridBagConstraints);
+
+        bActualizar.setText("Actualizar clasificación");
+        bActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bActualizarActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 79, 6, 0);
+        dialogoRanking.getContentPane().add(bActualizar, gridBagConstraints);
+
+        bVolcarTXT.setText("Generar TXT");
+        bVolcarTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVolcarTXTActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 4;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(5, 90, 6, 0);
+        dialogoRanking.getContentPane().add(bVolcarTXT, gridBagConstraints);
+
+        dialogoCritica.setTitle("Críticas");
+        dialogoCritica.setResizable(false);
+        dialogoCritica.setSize(new java.awt.Dimension(1070, 698));
+
+        comboPelisCriticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboPelisCriticasActionPerformed(evt);
+            }
+        });
+
+        BVer.setText("Ver críticas");
+        BVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BVerActionPerformed(evt);
+            }
+        });
+
+        BCompartir1.setText("Compartir...");
+        BCompartir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BCompartir1ActionPerformed(evt);
+            }
+        });
+
+        textoCriticas.setColumns(20);
+        textoCriticas.setRows(5);
+        jScrollPane4.setViewportView(textoCriticas);
+
+        javax.swing.GroupLayout dialogoCriticaLayout = new javax.swing.GroupLayout(dialogoCritica.getContentPane());
+        dialogoCritica.getContentPane().setLayout(dialogoCriticaLayout);
+        dialogoCriticaLayout.setHorizontalGroup(
+            dialogoCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoCriticaLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(dialogoCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoCriticaLayout.createSequentialGroup()
+                        .addComponent(comboPelisCriticas, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(BVer)
+                        .addGap(504, 504, 504)
+                        .addComponent(comboCriticas, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(BCompartir1))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1064, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+        dialogoCriticaLayout.setVerticalGroup(
+            dialogoCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoCriticaLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addGroup(dialogoCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoCriticaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(comboPelisCriticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BVer)
+                    .addGroup(dialogoCriticaLayout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(comboCriticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BCompartir1))
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        dialogoEscribirCritica.setTitle("Escribr crítica");
+        dialogoEscribirCritica.setResizable(false);
+        dialogoEscribirCritica.setSize(new java.awt.Dimension(452, 303));
+
+        jLabel24.setText("PUNTUACION:");
+
+        jLabel25.setText("DESCRIPCION:");
+
+        BAcept.setText("ACEPTAR");
+        BAcept.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BAceptActionPerformed(evt);
+            }
+        });
+
+        tPuntuacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tPuntuacionActionPerformed(evt);
+            }
+        });
+
+        tDescr.setColumns(20);
+        tDescr.setRows(5);
+        jScrollPane6.setViewportView(tDescr);
+
+        jLabel26.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel26.setText("NUEVA CRITICA");
+
+        javax.swing.GroupLayout dialogoEscribirCriticaLayout = new javax.swing.GroupLayout(dialogoEscribirCritica.getContentPane());
+        dialogoEscribirCritica.getContentPane().setLayout(dialogoEscribirCriticaLayout);
+        dialogoEscribirCriticaLayout.setHorizontalGroup(
+            dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoEscribirCriticaLayout.createSequentialGroup()
+                .addGroup(dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoEscribirCriticaLayout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addGroup(dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel25))
+                        .addGap(27, 27, 27)
+                        .addGroup(dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel26)))
+                    .addGroup(dialogoEscribirCriticaLayout.createSequentialGroup()
+                        .addGap(224, 224, 224)
+                        .addComponent(BAcept)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        dialogoEscribirCriticaLayout.setVerticalGroup(
+            dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoEscribirCriticaLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel26)
+                .addGap(26, 26, 26)
+                .addGroup(dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(tPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(dialogoEscribirCriticaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dialogoEscribirCriticaLayout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jLabel25))
+                    .addGroup(dialogoEscribirCriticaLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BAcept)
+                .addGap(30, 30, 30))
+        );
+
+        dialogoPartidasTerminadas.setResizable(false);
+        dialogoPartidasTerminadas.setSize(new java.awt.Dimension(467, 380));
+
+        bCompartirPartida.setText("Compartir...");
+        bCompartirPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCompartirPartidaActionPerformed(evt);
+            }
+        });
+
+        textoResultadoPartida.setColumns(20);
+        textoResultadoPartida.setRows(5);
+        jScrollPane7.setViewportView(textoResultadoPartida);
+
+        bVerPartida.setText("Ver resultado...");
+        bVerPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bVerPartidaActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout dialogoPartidasTerminadasLayout = new javax.swing.GroupLayout(dialogoPartidasTerminadas.getContentPane());
+        dialogoPartidasTerminadas.getContentPane().setLayout(dialogoPartidasTerminadasLayout);
+        dialogoPartidasTerminadasLayout.setHorizontalGroup(
+            dialogoPartidasTerminadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dialogoPartidasTerminadasLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(bCompartirPartida)
+                .addGap(184, 184, 184))
+            .addGroup(dialogoPartidasTerminadasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7)
+                .addContainerGap())
+            .addGroup(dialogoPartidasTerminadasLayout.createSequentialGroup()
+                .addGap(76, 76, 76)
+                .addComponent(comboPartidasTerminadas, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(59, 59, 59)
+                .addComponent(bVerPartida)
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+        dialogoPartidasTerminadasLayout.setVerticalGroup(
+            dialogoPartidasTerminadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dialogoPartidasTerminadasLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(dialogoPartidasTerminadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboPartidasTerminadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bVerPartida))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(bCompartirPartida)
+                .addContainerGap())
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(918, 575));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setText("Mi muro:");
@@ -782,6 +1206,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         bCompartirTodo.setText("Compartir todo...");
+        bCompartirTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCompartirTodoActionPerformed(evt);
+            }
+        });
 
         bVerCriticas.setText("Críticas...");
         bVerCriticas.addActionListener(new java.awt.event.ActionListener() {
@@ -813,7 +1242,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(bVerPeliculas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bVerCriticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bCompartirTodo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(bCompartirTodo, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                     .addComponent(bCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -826,7 +1255,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(bVerCriticas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(bCompartirTodo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(bCerrarSesion)
                 .addContainerGap())
         );
@@ -836,33 +1265,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         textoMuro.setRows(5);
         jScrollPane2.setViewportView(textoMuro);
 
-        jMenu1.setText("Amigos");
+        bAmigos.setText("Amigos");
 
-        jMenuItem1.setText("Ver lista de amigos...");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        bVerAmigos.setText("Ver lista de amigos...");
+        bVerAmigos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                bVerAmigosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        bAmigos.add(bVerAmigos);
 
-        jMenuItem2.setText("Solicitudes de amistad...");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        bSolicitudes.setText("Solicitudes de amistad...");
+        bSolicitudes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                bSolicitudesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        bAmigos.add(bSolicitudes);
 
-        jMenuItem3.setText("Enviar solicitud de amistad");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        bEnviarSolicitud.setText("Enviar solicitud de amistad");
+        bEnviarSolicitud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                bEnviarSolicitudActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        bAmigos.add(bEnviarSolicitud);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(bAmigos);
 
         jMenu2.setText("Trivia");
 
@@ -874,16 +1303,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(botonJugarPartida);
 
-        jMenuItem4.setText("Mis partidas pendientes...");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        bPartidasPendientes.setText("Mis partidas pendientes...");
+        bPartidasPendientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                bPartidasPendientesActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem4);
+        jMenu2.add(bPartidasPendientes);
 
-        jMenuItem5.setText("Clasificación...");
-        jMenu2.add(jMenuItem5);
+        bPartidasTerminadas.setText("Mis partidas terminadas...");
+        bPartidasTerminadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bPartidasTerminadasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(bPartidasTerminadas);
+
+        bClasificacion.setText("Clasificación...");
+        bClasificacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bClasificacionActionPerformed(evt);
+            }
+        });
+        jMenu2.add(bClasificacion);
 
         jMenuBar1.add(jMenu2);
 
@@ -898,12 +1340,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(235, 235, 235))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 22, Short.MAX_VALUE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -912,23 +1354,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void bVerAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerAmigosActionPerformed
 
         for(Usuario usuar: user.getLista_amigos()){
             jComboLAmigos.addItem(usuar.getNombre());
         }     
         DialogListaAmigos.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_bVerAmigosActionPerformed
 
     private void botonJugarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonJugarPartidaActionPerformed
         // TODO add your handling code here:
@@ -936,6 +1376,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             j2 = users.usuarioAleatorio(user);
             labelContrincante.setText(j2.getNombre());
             dialogoTrivia.setVisible(true);
+            
         }
         else{
             JOptionPane.showMessageDialog(this, "No hay suficientes usuarios registrados para poder iniciar una partida.", "Jugadores insuficientes", JOptionPane.ERROR_MESSAGE);
@@ -950,14 +1391,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DialogPelis.setVisible(true);
     }//GEN-LAST:event_bVerPeliculasActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void bSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSolicitudesActionPerformed
 
         //Recorrido de la lista de solicitudes para meterla en el comboBox
         for (Usuario u: user.getSolicitudes_amigos_pendientes()){
             jComboSolicitudes.addItem(u.getNombre());
         }
         DialogListaSolicit.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_bSolicitudesActionPerformed
 
     private void bCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCerrarSesionActionPerformed
         // TODO add your handling code here:
@@ -971,59 +1412,62 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void bVerCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerCriticasActionPerformed
         // TODO add your handling code here:
         // for each
-        VentanaCritica vcrit = new VentanaCritica(); 
-        for (Usuario usu: user.getLista_amigos()){
-            vcrit.getComboAmigos().addItem(usu.getNombre());
-        }
-         Iterator<Pelicula> i = films.getListaPeliculas().iterator(); 
+        Iterator<Pelicula> i = films.getListaPeliculas().iterator();
+        Pelicula p = null;
         while (i.hasNext()){
-            vcrit.getComboCritica().addItem(i.next().getTitulo()); 
+            p = i.next();
+            comboPelisCriticas.addItem(p.getTitulo());
+            
         }
-        vcrit.setVisible(true); 
-        this.setVisible(false); 
+        dialogoCritica.setVisible(true); 
     }//GEN-LAST:event_bVerCriticasActionPerformed
 
     private void bJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugarActionPerformed
         // TODO add your handling code here:
         partida = user.iniciarPartida(j2);      
         textoPregunta.setText(partida.getPreguntaActual().toString());
-        preguntaNumero.setText(String.valueOf(partida.getIdentificador()));
+        preguntaNumero.setText("Pregunta " + String.valueOf(partida.getContadorPreguntas()+ 1));
+        dialogoTrivia.setVisible(false);
         dialogoPreguntas.setVisible(true);
+        
     }//GEN-LAST:event_bJugarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        this.setVisible(false);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void bResponderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bResponderActionPerformed
         // TODO add your handling code here:
-        String pistas = "";
-        int puntosActuales = 50;
+        int puntosActuales = getPuntosActualesJugador();
+        Pregunta preguntaActual = partida.getPreguntaActual();
+               
+        // si se ha acertado la pregunta
         if (partida.getPreguntaActual().comprobarRespuesta(textoRespuesta.getText())) {
-            JOptionPane.showMessageDialog(this, "¡Respuesta correcta! +" + puntosActuales + " puntos", "Respuesta correcta", JOptionPane.PLAIN_MESSAGE);
-            partida.setPuntosTotales(puntosActuales + partida.getPuntosTotales());
-            if(partida.getIdentificador() == 5){
+            JOptionPane.showMessageDialog(dialogoPreguntas, "¡Respuesta correcta! +" + puntosActuales + " puntos", "Respuesta correcta", JOptionPane.PLAIN_MESSAGE);
+            actualizarPuntosDePregunta();
+            if(partida.getContadorPreguntas()== 5){
                 finalizarPartida();
             }else{
                 nuevaPregunta();
             }
 
+            // si se ha fallado la pregunta
         } else {
-            JOptionPane.showMessageDialog(this, "¡Respuesta incorrecta!", "Respuesta correcta", JOptionPane.PLAIN_MESSAGE);
-            partida.getPreguntaActual().incrementarNumeroPistas();
+            JOptionPane.showMessageDialog(dialogoPreguntas, "¡Respuesta incorrecta!", "Respuesta incorrecta", JOptionPane.PLAIN_MESSAGE);
+            //partida.getPreguntaActual().incrementarNumeroPistas();
             if(partida.getPreguntaActual().getNumero_pista() < 5){
                 textoPistas.setText(textoPistas.getText() + "\n" + partida.getPreguntaActual().ofrecerNuevaPista());
-                System.out.println(partida.getPreguntaActual().ofrecerNuevaPista());
-                puntosActuales -= 10;
+                reducirPuntos();               
             }
         }
-
-        if (partida.getPreguntaActual().getNumero_pista() > 4 && partida.getIdentificador() < 5){
+        if (partida.getPreguntaActual().getNumero_pista() > 4 && partida.getContadorPreguntas()< 5){
+            JOptionPane.showMessageDialog(dialogoPreguntas, "Has alcanzado el número de pistas máximo.", "Respuesta incorrecta", JOptionPane.PLAIN_MESSAGE);
+            actualizarPuntosDePregunta();
             nuevaPregunta();
         }
-        else if(partida.getPreguntaActual().getNumero_pista() > 4 && partida.getIdentificador() == 5){
+        else if(partida.getPreguntaActual().getNumero_pista() > 3 && partida.getContadorPreguntas()== 5){
+            actualizarPuntosDePregunta();
             finalizarPartida();
         }
     }//GEN-LAST:event_bResponderActionPerformed
@@ -1045,26 +1489,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void BCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCompartirActionPerformed
 
-        String s = "Todos los amigos";
-        jComboAQuien.addItem(s);
-        Iterator <Usuario> iter = user.getLista_amigos().iterator();
-        Usuario usuar = new Usuario();
-        //iterator para el combobox
-        while(iter.hasNext()){
-            usuar = iter.next();
-            jComboAQuien.addItem(usuar.getNombre());
-        }
-
+        inicializarCompartir();
+        tipoACompartir = 0;
         DialogCompartir.setVisible(true);
     }//GEN-LAST:event_BCompartirActionPerformed
 
     private void BCriticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCriticaActionPerformed
         // TODO add your handling code here:
-        Pelicula p = films.buscarPelicula((String)ComboPelis.getSelectedItem());
-        VentanaEscribeCr vEscribeC = new VentanaEscribeCr();
-        vEscribeC.setFilm(p);
-        vEscribeC.setVisible(true);
-        this.setVisible(false);
+        dialogoEscribirCritica.setVisible(true);
+        DialogPelis.setVisible(false);
     }//GEN-LAST:event_BCriticaActionPerformed
 
     private void BVerpeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVerpeliActionPerformed
@@ -1080,23 +1513,26 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         DialogPelis.setVisible(false);
     }//GEN-LAST:event_BVerpeliActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (jComboAQuien.getSelectedIndex() == 0){
-            user.compartirPelicula(films.buscarPelicula((String) ComboPelis.getSelectedItem()));
-        }else{
-            Usuario u = users.bucarUsuario((String) jComboAQuien.getSelectedItem());
-            user.compartirPelicula(films.buscarPelicula((String) ComboPelis.getSelectedItem()), u);
+    private void bPartidasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPartidasPendientesActionPerformed
+        dialogoPartidasPendientes.setVisible(true);
+        for(Partida p : user.getPartidas_pendientes()){
+            comboPartidasPendientes.addItem(p);
         }
         
-        JOptionPane.showMessageDialog(null, "Se ha compartido la pelicula " + (String) ComboPelis.getSelectedItem());
-        DialogCompartir.setVisible(false);
-        DialogPelis.setVisible(true);
+    }//GEN-LAST:event_bPartidasPendientesActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void bCompartirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCompartirActionPerformed
+        if (jComboAQuien.getSelectedIndex() == 0){
+            compartirTodos(tipoACompartir);
+        }else{
+            Usuario u = users.bucarUsuario((String) jComboAQuien.getSelectedItem());
+            compartir(tipoACompartir, u);
+        }
+        
+        JOptionPane.showMessageDialog(null, "Se ha compartido correctamente");
+        DialogCompartir.setVisible(false);
+
+    }//GEN-LAST:event_bCompartirActionPerformed
 
     private void jComboAQuienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboAQuienActionPerformed
         // TODO add your handling code here:
@@ -1114,7 +1550,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextFieldActorActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void bAnadirPeliculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAnadirPeliculaActionPerformed
         // TODO add your handling code here:
         if(films.existe(TextFieldTitulo.getText())){
             JOptionPane.showMessageDialog(this, "Esta película ya existe", "Error", JOptionPane.ERROR_MESSAGE);
@@ -1125,6 +1561,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         else{
             Pelicula film = new Pelicula(TextFieldTitulo.getText(), Integer.parseInt(TextFieldAno.getText()), TextFieldDirector.getText(), TextFieldActor.getText(),   TextFieldActriz.getText(), TextFieldGen.getText());
             films.anadirPelicula(film);
+            StringBuilder sb = new StringBuilder(film.toString());
+            user.setMuro(sb);
+            actualizarMuro(user);
             JOptionPane.showMessageDialog(this, "La película ha sido añadida");
             DialogAnadir.setVisible(false);
             Iterator<Pelicula> i = films.getListaPeliculas().iterator();  
@@ -1133,7 +1572,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
             DialogPelis.setVisible(true);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+        
+    }//GEN-LAST:event_bAnadirPeliculaActionPerformed
 
     private void bAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptActionPerformed
 
@@ -1156,34 +1596,48 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         }
         jLabelNombreAmigo.setText("Muro de " + amigo.getNombre());
-        jLabelMuroAmigo.setText(amigo.getMuro().toString());
+        textoMuroAmigo.setText(amigo.getMuro().toString());
         DialogVerAmigo.setVisible(true);
         DialogListaAmigos.setVisible(false);
 
     }//GEN-LAST:event_jBotonVerAmigoActionPerformed
 
     private void jButtonAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptActionPerformed
-        for(Usuario u: user.getSolicitudes_amigos_pendientes()){
-            if(jComboSolicitudes.getSelectedItem().equals(u.getNombre())){
+        ArrayList<Usuario> solicitudes = user.getSolicitudes_amigos_pendientes();       
+        Iterator<Usuario> it = solicitudes.iterator();
+        boolean encontrado = false;
+        Usuario u = new Usuario();
+        while(it.hasNext() && !encontrado){
+            u = it.next();
+            if (jComboSolicitudes.getSelectedItem().equals(u.getNombre())) {
                 user.aceptarInvitacion(u);
-                jComboSolicitudes.remove(jComboSolicitudes.getSelectedIndex());
-                JOptionPane.showMessageDialog(null, "Has aceptado la solicitud de amistad del usuario " + u.getNombre());
+                jComboSolicitudes.removeItemAt(jComboSolicitudes.getSelectedIndex());
+                encontrado = true;
+                JOptionPane.showMessageDialog(DialogListaSolicit, "Has aceptado la solicitud de amistad del usuario " + u.getNombre());
             }
         }
+        
+        
 
     }//GEN-LAST:event_jButtonAceptActionPerformed
 
     private void jButtonRechActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRechActionPerformed
-        for(Usuario u: user.getSolicitudes_amigos_pendientes()){
-            if(jComboSolicitudes.getSelectedItem().equals(u.getNombre())){
+        ArrayList<Usuario> solicitudes = user.getSolicitudes_amigos_pendientes();
+        Iterator<Usuario> it = solicitudes.iterator();
+        boolean encontrado = false;
+        Usuario u = new Usuario();
+        while (it.hasNext() && !encontrado) {
+            u = it.next();
+            if (jComboSolicitudes.getSelectedItem().equals(u.getNombre())) {
                 user.rechazarInvitacion(u);
-                jComboSolicitudes.remove(jComboSolicitudes.getSelectedIndex());
-                JOptionPane.showMessageDialog(null, "La solicitud de amistad del usuario " + u.getNombre() + " ha sido rechazada.");
+                jComboSolicitudes.removeItemAt(jComboSolicitudes.getSelectedIndex());
+                encontrado = true;
+                JOptionPane.showMessageDialog(DialogListaSolicit, "La solicitud de amistad del usuario " + u.getNombre() + " ha sido rechazada.");
             }
         }
     }//GEN-LAST:event_jButtonRechActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void bEnviarSolicitudActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEnviarSolicitudActionPerformed
         
         for(Usuario u: users.getListaUsuarios()){
             if((!user.getLista_amigos().contains(u) ) && (!u.getNombre().equals(user.getNombre()))){
@@ -1192,18 +1646,173 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             
         }
         DialogEnviarSolicitud.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_bEnviarSolicitudActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if(jComboNoAmigos.getSelectedItem().equals(null)){
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado ningun usuario", "Error", JOptionPane.ERROR_MESSAGE);
+        if(jComboNoAmigos.getSelectedItem() == null){
+            JOptionPane.showMessageDialog(DialogEnviarSolicitud, "No se ha seleccionado ningun usuario", "Error", JOptionPane.ERROR_MESSAGE);
         }else{
             Usuario amig = users.bucarUsuario((String) jComboNoAmigos.getSelectedItem());
             user.invitarAmigo(amig);
-            JOptionPane.showMessageDialog(null, "Se ha enviado una solicitud de amistad a " + amig.getNombre());
+            jComboNoAmigos.removeItemAt(jComboNoAmigos.getSelectedIndex());
+            JOptionPane.showMessageDialog(DialogEnviarSolicitud, "Se ha enviado una solicitud de amistad a " + amig.getNombre());
         }
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jComboSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboSolicitudesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboSolicitudesActionPerformed
+
+    private void comboPartidasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPartidasPendientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboPartidasPendientesActionPerformed
+
+    private void bJugarPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bJugarPendienteActionPerformed
+        // TODO add your handling code here:
+        partida = (Partida) comboPartidasPendientes.getSelectedItem();
+        partida.setContadorPreguntasACero();
+        textoPregunta.setText(partida.getPreguntaActual().toString());
+        preguntaNumero.setText("Pregunta " + String.valueOf(partida.getContadorPreguntas()+ 1));
+        dialogoPreguntas.setVisible(true);
+    }//GEN-LAST:event_bJugarPendienteActionPerformed
+
+    private void bClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClasificacionActionPerformed
+
+        ranking = new Clasificacion(users);
+        textoRanking.setText(ranking.toString());
+        for (Item i : ranking.getListaItems()) {
+            comboUsersClasificacion.addItem(i);
+        }
+        dialogoRanking.setVisible(true);
+    }//GEN-LAST:event_bClasificacionActionPerformed
+
+    private void comboPelisCriticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPelisCriticasActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboPelisCriticasActionPerformed
+
+    private void BVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BVerActionPerformed
+        // TODO add your handling code here:
+        Pelicula p = films.buscarPelicula((String)comboPelisCriticas.getSelectedItem());
+        String criticas = "";
+        for (Critica c : p.getListaCriticas()) {
+            comboCriticas.addItem(c);
+            criticas += c.mostrarCritica();
+        }
+        textoCriticas.setText(criticas);
+
+    }//GEN-LAST:event_BVerActionPerformed
+
+    private void BCompartir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BCompartir1ActionPerformed
+        // TODO add your handling code here:
+        inicializarCompartir();
+        tipoACompartir = 1;
+        DialogCompartir.setVisible(true);
+    }//GEN-LAST:event_BCompartir1ActionPerformed
+
+    private void bCompartirTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCompartirTodoActionPerformed
+        inicializarCompartir();
+        tipoACompartir = 3;
+        DialogCompartir.setVisible(true);
+    }//GEN-LAST:event_bCompartirTodoActionPerformed
+
+    private void bVolcarTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVolcarTXTActionPerformed
+        // TODO add your handling code here:
+        JFileChooser selectorArchivos = new JFileChooser();
+        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos de texto (.txt)", "txt", "TXT"));     // asi se pueden filtrar los archivos.txt
+        selectorArchivos.setAcceptAllFileFilterUsed(false);
+        int opcionSeleccionada = selectorArchivos.showSaveDialog(this);
+        if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
+            try {
+                File archivo = selectorArchivos.getSelectedFile();
+                String ruta = archivo.getAbsolutePath();
+                if (!ruta.endsWith(".txt")) {
+                    ruta += ".txt";     // si el usuario no ha puesto la extension .txt, se escribe automaticamente
+                }
+                ranking.volcarTXT(ruta);
+                JOptionPane.showMessageDialog(this, "Se ha guardado el archivo " + ruta + " correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_bVolcarTXTActionPerformed
+
+    private void bActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bActualizarActionPerformed
+        ranking.actualizar();
+        textoRanking.setText(ranking.toString());
+    }//GEN-LAST:event_bActualizarActionPerformed
+
+    private void bVerDetallePartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerDetallePartidaActionPerformed
+        Item item = (Item) comboUsersClasificacion.getSelectedItem();
+        textoRanking.setText(item.detallePartidas(users));
+    }//GEN-LAST:event_bVerDetallePartidaActionPerformed
+
+    private void bAceptarClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAceptarClasificacionActionPerformed
+        int indice = comboOrdenarClasificacion.getSelectedIndex();
+
+        switch(indice){
+            case 0: ranking.actualizar();
+            textoRanking.setText(ranking.toString());
+            break;
+            case 1: ranking.ordenarPorcentaje();
+            textoRanking.setText(ranking.toString());
+            break;
+            case 2: ranking.ordenarVictorias();
+            textoRanking.setText(ranking.toString());
+            break;
+            case 3: ranking.ordenarPuntos();
+            textoRanking.setText(ranking.toString());
+            break;
+        }
+    }//GEN-LAST:event_bAceptarClasificacionActionPerformed
+
+    private void comboOrdenarClasificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOrdenarClasificacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOrdenarClasificacionActionPerformed
+
+    private void jComboNoAmigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboNoAmigosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboNoAmigosActionPerformed
+
+    private void BAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BAceptActionPerformed
+        // TODO add your handling code here:
+        double puntuacion = Double.parseDouble(tPuntuacion.getText());
+        if(puntuacion>10 || puntuacion<0){
+            JOptionPane.showMessageDialog(this, "Introduzca una puntuación de 0 a 10","ERROR", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            Pelicula p = films.buscarPelicula((String) ComboPelis.getSelectedItem());
+            Critica c = new Critica(p.getTitulo(), puntuacion, tDescr.getText());
+            user.añadirCritica(c, p);
+            JOptionPane.showMessageDialog(this, "Crítica guardada correctamente", "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        }
+
+    }//GEN-LAST:event_BAceptActionPerformed
+
+    private void tPuntuacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tPuntuacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tPuntuacionActionPerformed
+
+    private void bVerPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bVerPartidaActionPerformed
+        // TODO add your handling code here:
+        textoResultadoPartida.setText(((Partida)comboPartidasTerminadas.getSelectedItem()).getResultado_final());
+    }//GEN-LAST:event_bVerPartidaActionPerformed
+
+    private void bPartidasTerminadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bPartidasTerminadasActionPerformed
+        // TODO add your handling code here:
+        for(Partida p : user.getPartidas_completas()){
+            comboPartidasTerminadas.addItem(p);
+        }
+        dialogoPartidasTerminadas.setVisible(true);
+    }//GEN-LAST:event_bPartidasTerminadasActionPerformed
+
+    private void bCompartirPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCompartirPartidaActionPerformed
+        // TODO add your handling code here:
+        inicializarCompartir();
+        tipoACompartir = 2;
+        DialogCompartir.setVisible(true);
+    }//GEN-LAST:event_bCompartirPartidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1252,23 +1861,28 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.films = films;
     }
     
-    public void finalizarPartida() {
+    private void finalizarPartida() {
         if (user.equals(partida.getJ1())) {
-            partida.setPtos_jugador1(partida.getPuntosTotales());
             partida.ponerEnPendientes();
-            JOptionPane.showMessageDialog(this, "¡Todas las preguntas completadas!\nHas ganado un total de " + partida.getPuntosTotales() + " puntos. \nQueda pendiente que el contrincante responda sus preguntas para conocer el resultado.", "Preguntas completadas", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(this, "¡Todas las preguntas completadas!\nHas ganado un total de " + partida.getPtos_jugador1()+ " puntos. \nQueda pendiente que el contrincante responda sus preguntas para conocer el resultado.", "Preguntas completadas", JOptionPane.PLAIN_MESSAGE);
         } else if (user.equals(partida.getJ2())) {
-            partida.setPtos_jugador2(partida.getPuntosTotales());
             partida.finalizarPartida();
-            JOptionPane.showMessageDialog(this, "¡Todas las preguntas completadas!\nHas ganado un total de " + partida.getPuntosTotales() + " puntos. \nResultado:\n" + partida.toString(), "Partida completada", JOptionPane.PLAIN_MESSAGE);
-            partida.setResultado_final(partida.toString());
+            
+            JOptionPane.showMessageDialog(this, "¡Todas las preguntas completadas!\nHas ganado un total de " + partida.getPtos_jugador2()+ " puntos. \nResultado:\n" + partida.getResultado_final(), "Partida completada", JOptionPane.PLAIN_MESSAGE);
+            user.setMuro(new StringBuilder(partida.getResultado_final()));
+            j2.setMuro(new StringBuilder(partida.getResultado_final()));
+            actualizarMuro(user);
+            actualizarMuro(j2);
+          
+            
         }
         dialogoPreguntas.setVisible(false);
+        this.setVisible(true);
     }
     
-    public void nuevaPregunta(){
+    private void nuevaPregunta(){
         textoPregunta.setText(partida.ofrecerNuevaPregunta());
-        preguntaNumero.setText("Pregunta " + String.valueOf(partida.getIdentificador()));
+        preguntaNumero.setText("Pregunta " + String.valueOf(partida.getContadorPreguntas()+ 1));
         textoPistas.setText("");
     }
     
@@ -1276,11 +1890,108 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public void setTextoMuro(StringBuilder s){
         textoMuro.setText(s.toString());
     }
+    
+    private void actualizarMuro(Usuario u) {
+        textoMuro.setText(u.getMuro().toString());
+    }
+    
+    public int getPuntosJugador(){
+        int puntos = 0;
+        if (user.equals(partida.getJ1())) {
+            puntos = partida.getPtos_jugador1();
+        } else if (user.equals(partida.getJ2())) {
+            puntos = partida.getPtos_jugador2();
+        }
+        return puntos;
+    }
+    
+    public void setPuntosJugador(int ptos){
+        if (user.equals(partida.getJ1())) {
+            partida.setPtos_jugador1(ptos);
+        } else if (user.equals(partida.getJ2())) {
+            partida.setPtos_jugador2(ptos);
+        }
+    }
+    
+    private int getPuntosActualesJugador() {
+        int puntos = 0;
+        if (user.equals(partida.getJ1())) {
+            puntos = partida.getPreguntaActual().getPuntos_jugador_1();
+        } else if (user.equals(partida.getJ2())) {
+            puntos = partida.getPreguntaActual().getPuntos_jugador_2();
+        }
+        return puntos;
+    }
+    
+    private void actualizarPuntosDePregunta(){
+        if (user.equals(partida.getJ1())) {
+            partida.actualizarPuntos(1);
+        } else if (user.equals(partida.getJ2())) {
+            partida.actualizarPuntos(2);
+        }
+        
+    }
+    
+    private void reducirPuntos(){
+        if (user.equals(partida.getJ1())) {
+            partida.getPreguntaActual().reducirPuntos(1);
+        } else if (user.equals(partida.getJ2())) {
+            partida.getPreguntaActual().reducirPuntos(2);
+        }
+    }
+    
+    private void compartirTodos(int tipo){
+        switch (tipo) {
+            case 0:
+                user.compartirPelicula(films.buscarPelicula((String) ComboPelis.getSelectedItem()));
+                break;
+            case 1:
+                user.compartirCritica((Critica) comboCriticas.getSelectedItem());
+                break;
+            case 2: user.compartirPartida(partida);
+                break;
+            case 3:
+                user.compartirTodo();
+        }
+    }
+    
+    private void compartir(int tipo, Usuario u) {
+        switch(tipo){
+            case 0: 
+                user.compartirPelicula(films.buscarPelicula((String) ComboPelis.getSelectedItem()), u);
+                break;
+            case 1: 
+                user.compartirCritica((Critica) comboCriticas.getSelectedItem(), u);
+                break;
+            case 2: user.compartirPartida(partida);
+                break;
+            case 3: user.compartirTodo(u);
+        }
+
+    }
+    
+    private void inicializarCompartir(){
+        jComboAQuien.removeAllItems();
+        String s = "Todos los amigos";
+        jComboAQuien.addItem(s);
+        Iterator<Usuario> iter = user.getLista_amigos().iterator();
+        Usuario usuar = new Usuario();
+        //iterator para el combobox
+        while (iter.hasNext()) {
+            usuar = iter.next();
+            jComboAQuien.addItem(usuar.getNombre());
+        }
+    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BAcept;
     private javax.swing.JButton BAnadirpeli;
     private javax.swing.JButton BCompartir;
+    private javax.swing.JButton BCompartir1;
     private javax.swing.JButton BCritica;
+    private javax.swing.JButton BVer;
     private javax.swing.JButton BVerpeli;
     private javax.swing.JComboBox<String> ComboPelis;
     private javax.swing.JDialog DialogAnadir;
@@ -1298,19 +2009,44 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField TextFieldGen;
     private javax.swing.JTextField TextFieldTitulo;
     private javax.swing.JButton bAcept;
+    private javax.swing.JButton bAceptarClasificacion;
+    private javax.swing.JButton bActualizar;
+    private javax.swing.JMenu bAmigos;
+    private javax.swing.JButton bAnadirPelicula;
     private javax.swing.JButton bCerrarSesion;
+    private javax.swing.JMenuItem bClasificacion;
+    private javax.swing.JButton bCompartir;
+    private javax.swing.JButton bCompartirPartida;
     private javax.swing.JButton bCompartirTodo;
+    private javax.swing.JMenuItem bEnviarSolicitud;
     private javax.swing.JButton bJugar;
+    private javax.swing.JButton bJugarPendiente;
+    private javax.swing.JMenuItem bPartidasPendientes;
+    private javax.swing.JMenuItem bPartidasTerminadas;
     private javax.swing.JButton bResponder;
+    private javax.swing.JMenuItem bSolicitudes;
+    private javax.swing.JMenuItem bVerAmigos;
     private javax.swing.JButton bVerCriticas;
+    private javax.swing.JButton bVerDetallePartida;
+    private javax.swing.JButton bVerPartida;
     private javax.swing.JButton bVerPeliculas;
+    private javax.swing.JButton bVolcarTXT;
     private javax.swing.JMenuItem botonJugarPartida;
+    private javax.swing.JComboBox<Critica> comboCriticas;
+    private javax.swing.JComboBox<String> comboOrdenarClasificacion;
+    private javax.swing.JComboBox<Partida> comboPartidasPendientes;
+    private javax.swing.JComboBox<Partida> comboPartidasTerminadas;
+    private javax.swing.JComboBox<String> comboPelisCriticas;
+    private javax.swing.JComboBox<Item> comboUsersClasificacion;
+    private javax.swing.JDialog dialogoCritica;
+    private javax.swing.JDialog dialogoEscribirCritica;
+    private javax.swing.JDialog dialogoPartidasPendientes;
+    private javax.swing.JDialog dialogoPartidasTerminadas;
     private javax.swing.JDialog dialogoPreguntas;
+    private javax.swing.JDialog dialogoRanking;
     private javax.swing.JDialog dialogoTrivia;
     private javax.swing.JButton jBotonVerAmigo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButtonAcept;
     private javax.swing.JButton jButtonRech;
@@ -1332,6 +2068,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1339,21 +2080,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JLabel jLabelMuroAmigo;
     private javax.swing.JLabel jLabelNombreAmigo;
     private javax.swing.JLabel jLabelSolitudes;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JLabel lActor;
     private javax.swing.JLabel lActriz;
     private javax.swing.JLabel lAnno;
@@ -1362,9 +2100,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lTitulo;
     private javax.swing.JLabel labelContrincante;
     private javax.swing.JLabel preguntaNumero;
+    private javax.swing.JTextArea tDescr;
+    private javax.swing.JTextField tPuntuacion;
+    private javax.swing.JTextArea textoCriticas;
     private javax.swing.JTextArea textoMuro;
+    private javax.swing.JTextArea textoMuroAmigo;
     private javax.swing.JTextArea textoPistas;
     private javax.swing.JLabel textoPregunta;
+    private javax.swing.JTextArea textoRanking;
     private javax.swing.JTextField textoRespuesta;
+    private javax.swing.JTextArea textoResultadoPartida;
     // End of variables declaration//GEN-END:variables
 }

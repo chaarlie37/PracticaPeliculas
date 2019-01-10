@@ -7,9 +7,12 @@
  */
 package practicapeliculas;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.io.Serializable;
 
-public class Partida implements Compartible {
+public class Partida implements Compartible, Serializable {
 
+    private static int numeroPartidas = 0;
     private Pregunta preguntaActual;
     private int identificador;
     private Usuario ganador;
@@ -20,6 +23,7 @@ public class Partida implements Compartible {
     private Usuario j1;
     private Usuario j2;
     private Pregunta[] listaPreguntas = new Pregunta[6];
+    private int contadorPreguntas;
 
     public Partida(Usuario j1, Usuario j2, Usuarios users, Peliculas films){
         this.j1 = j1;
@@ -27,9 +31,13 @@ public class Partida implements Compartible {
         for(int i = 0; i < 6; i++){
             listaPreguntas[i] = new Pregunta(i, films);
         }
-        identificador = 0;
-        preguntaActual = listaPreguntas[identificador];
+        contadorPreguntas = 0;
+        preguntaActual = listaPreguntas[contadorPreguntas];
         puntosTotales = 0;
+        numeroPartidas++;
+        identificador = numeroPartidas;
+        ptos_jugador1 = 0;
+        ptos_jugador2 = 0;
     }
 
     public void setPtos_jugador1(int ptos_jugador1) {
@@ -48,8 +56,6 @@ public class Partida implements Compartible {
         return ptos_jugador2;
     }
 
-    
-
     public Usuario getJ1() {
         return j1;
     }
@@ -63,12 +69,18 @@ public class Partida implements Compartible {
     }
     
     public void finalizarPartida(){
+        if(ptos_jugador1 > ptos_jugador2){
+            ganador = j1;
+        }else if (ptos_jugador1 < ptos_jugador2){
+            ganador = j2;
+        }else{
+            ganador = null;
+        }
         j1.anadirPartidaCompletada(this);
         j2.anadirPartidaCompletada(this);
+        generarResultadoFinal();
     }
     
-
-
     public Usuario getGanador() {
         return ganador;
     }
@@ -86,15 +98,16 @@ public class Partida implements Compartible {
     }
     
     public String ofrecerNuevaPregunta() {
-        //preguntaNumero.setText("Pregunta " + (contadorPreguntas + 1));
-        identificador++;
-        preguntaActual = listaPreguntas[identificador];
+        contadorPreguntas++;
+        preguntaActual = listaPreguntas[contadorPreguntas];
         return preguntaActual.toString();
-        //pistas = "";
-
     }
     
-
+    public void setContadorPreguntasACero(){
+        contadorPreguntas = 0;
+        preguntaActual = listaPreguntas[contadorPreguntas];
+        ptos_jugador2 = 0;
+    }
 
     public int getIdentificador() {
         return identificador;
@@ -112,25 +125,54 @@ public class Partida implements Compartible {
         this.resultado_final = resultado_final;
     }
 
-    
-    
+    public void setContadorPreguntas(int contadorPreguntas) {
+        this.contadorPreguntas = contadorPreguntas;
+    }
+
+    public int getContadorPreguntas() {
+        return contadorPreguntas;
+    }
+   
+    public void actualizarPuntos(int jugador){
+        if (jugador == 1) {
+            ptos_jugador1 += preguntaActual.getPuntos_jugador_1();
+        } else if (jugador == 2) {
+            ptos_jugador2 += preguntaActual.getPuntos_jugador_2();
+        }
+    }
     
 
     @Override
     public void compartir(Usuario u) {
-
+        StringBuilder texto = new StringBuilder(this.getResultado_final());
+        u.setMuro(texto);
     }
 
     @Override
     public void compartir(ArrayList<Usuario> usuarios) {
-
+        StringBuilder texto = new StringBuilder(this.getResultado_final());
+        Iterator<Usuario> it = usuarios.iterator();
+        while (it.hasNext()) {
+            it.next().setMuro(texto);
+        }
     }
     
     @Override
     public String toString(){
-        return j1.getNombre() + "VS. " + j2.getNombre() + "\n" +
-                "GANADOR: " + j1.getNombre() + "\n" + 
-                "Puntos " + j1.getNombre() + ": " + ptos_jugador1 + "\n" +
-                "Puntos " + j2.getNombre() + ": " + ptos_jugador2 + "\n";
+        return j1.getNombre() + " (ID: " + identificador + ")";
     }
+    
+    public void generarResultadoFinal(){
+        resultado_final = j1.getNombre() + " VS. " + j2.getNombre() + "\n" +
+                            "GANADOR: " + ganador.getNombre() + "\n" + 
+                            "Puntos " + j1.getNombre() + ": " + ptos_jugador1 + "\n" +
+                            "Puntos " + j2.getNombre() + ": " + ptos_jugador2 + "\n";
+    }
+
+    public String getResultado_final() {
+        generarResultadoFinal();
+        return resultado_final;
+    }
+    
+    
 }
