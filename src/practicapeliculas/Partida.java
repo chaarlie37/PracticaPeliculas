@@ -67,7 +67,9 @@ public class Partida implements Compartible {
         j2.anadirPartidaCompletada(this);
     }
     
-
+    public void hola(){
+        
+    }
 
     public Usuario getGanador() {
         return ganador;
