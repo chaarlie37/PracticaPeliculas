@@ -1,9 +1,3 @@
-/**
- * Ultima actualizacion: 30/12/2018
- * Cambios: (Por Carlos Sánchez Muñoz) Se puede Iniciar Sesión y Registrar usuarios
- * Version:1 
- *
- */
 package practicapeliculas;
 
 import javax.swing.JFileChooser;
@@ -12,10 +6,7 @@ import java.io.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.util.HashSet;
 
-/**
- *
- * @author carlo
- */
+
 public class VentanaDatos extends javax.swing.JFrame {
     Peliculas films = new Peliculas();
     Usuarios users = new Usuarios(films);
