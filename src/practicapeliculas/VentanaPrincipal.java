@@ -6,7 +6,6 @@ import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JFileChooser;
-import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class VentanaPrincipal extends javax.swing.JFrame {
@@ -26,8 +25,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
 
-    }
-    //COMENTARIO 
+    } 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

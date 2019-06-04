@@ -145,7 +145,6 @@ public class Usuario implements Serializable{
                 encontrado = true;
             }
         }
-        System.out.println("El usuario " + u.getNombre() + " ha sido añadido a tu lista de amigos." );
     }
 
     public void rechazarInvitacion(Usuario u){
@@ -159,9 +158,6 @@ public class Usuario implements Serializable{
                 encontrado = true;
             }
         }
-
-        System.out.println("Has rechazado la solicitud de amistad del usuario " + u.getNombre());
-
     }
 
     public void compartirPelicula (Pelicula p){

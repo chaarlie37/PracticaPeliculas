@@ -1,10 +1,3 @@
-/**
- * Carlos Sánchez Muñoz
- * Creado el 26/12/2018
- * Ultima actualizacion: 26/12/2018
- * Cambios: pequeños cambios
- * Versión 3
- */
 package practicapeliculas;
 import java.util.ArrayList;
 import java.util.Iterator;

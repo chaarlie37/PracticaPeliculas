@@ -14,7 +14,6 @@ public class Pelicula implements Compartible, Serializable{
     private HashSet<Critica> listaCriticas;
     
 
-    // se olvidó el constructor, he hecho uno incompleto para hacer pruebas
     public Pelicula(String titulo, int ano, String director, String actor, String actriz, String genero){
         this.titulo = titulo;
         this.ano = ano;

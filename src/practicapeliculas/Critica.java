@@ -27,13 +27,6 @@ public class Critica implements Compartible, Serializable{
     @Override
     public void compartir(Usuario u) {
         StringBuilder texto = new StringBuilder(this.mostrarCritica());
-        /*
-        for (Usuario usu : lista_amigos) {
-            if (usu.getNombre().equals(u.getNombre())) {
-                u.setMuro(texto);
-            }
-        }
-         */
         u.setMuro(texto);
     }
 
