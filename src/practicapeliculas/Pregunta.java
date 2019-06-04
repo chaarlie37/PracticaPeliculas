@@ -1,6 +1,7 @@
 package practicapeliculas;
+import java.io.Serializable;
 
-public class Pregunta{
+public class Pregunta implements Serializable{
     private int id;
     private Pelicula p;
     private int puntos_jugador_1;
@@ -10,10 +11,11 @@ public class Pregunta{
 
     public Pregunta(int id, Peliculas films){
         Pelicula film;
-        //do{
-            film = films.peliculaAleatoria();
-            this.p = film;
-        //}while(film == null);
+        film = films.peliculaAleatoria();
+        this.p = film;
+        
+        puntos_jugador_1 = 50;
+        puntos_jugador_2 = 50;
         
         this.id = id;
         switch (id){
@@ -35,16 +37,16 @@ public class Pregunta{
     public String ofrecerNuevaPista(){          // boton de pista
         String pista = "Has alcanzado el número de pistas máximo.";       
         switch(numero_pista){
-            case 0: if(id > 2) pista = ofrecerAno();
+            case 0: if(id > 1) pista = ofrecerAno();
                     else pista = ofrecerGenero();
             break;
-            case 1: if(id > 3 && id < 6) pista = ofrecerGenero();
+            case 1: if(id > 2 && id < 6) pista = ofrecerGenero();
                     else pista = ofrecerDirector();
             break;
-            case 2: if(id > 4) pista = ofrecerDirector();
+            case 2: if(id > 3) pista = ofrecerDirector();
                     else pista = ofrecerActor();
             break;
-            case 3: if(id > 5) pista = ofrecerActor();
+            case 3: if(id > 4) pista = ofrecerActor();
                     else pista = ofrecerActriz();
             break;
         }       
@@ -102,6 +104,14 @@ public class Pregunta{
     
     public void incrementarNumeroPistas() {
         numero_pista++;
+    }
+    
+    public void reducirPuntos(int jugador){
+        if (jugador == 1) {
+            puntos_jugador_1 -= 10;
+        } else if (jugador == 2) {
+            puntos_jugador_2 -= 10;
+        }
     }
 
 

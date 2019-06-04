@@ -1,20 +1,12 @@
-/**
- * Ultima actualizacion: 30/12/2018
- * Cambios: (Por Carlos Sánchez Muñoz) Se puede Iniciar Sesión y Registrar usuarios
- * Version:1 
- *
- */
 package practicapeliculas;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.io.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.util.HashSet;
 
-/**
- *
- * @author carlo
- */
+
 public class VentanaDatos extends javax.swing.JFrame {
     Peliculas films = new Peliculas();
     Usuarios users = new Usuarios(films);
@@ -45,8 +37,6 @@ public class VentanaDatos extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         botonGuardarPeliculas = new javax.swing.JMenuItem();
         botonCargarPeliculas = new javax.swing.JMenuItem();
-        botonGuardarUsuarios = new javax.swing.JMenuItem();
-        botonCargarUsuarios = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,7 +64,7 @@ public class VentanaDatos extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        botonGuardarPeliculas.setText("Guardar películas...");
+        botonGuardarPeliculas.setText("Guardar sistema...");
         botonGuardarPeliculas.setToolTipText("");
         botonGuardarPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,29 +73,13 @@ public class VentanaDatos extends javax.swing.JFrame {
         });
         jMenu1.add(botonGuardarPeliculas);
 
-        botonCargarPeliculas.setText("Cargar películas...");
+        botonCargarPeliculas.setText("Cargar sistema...");
         botonCargarPeliculas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonCargarPeliculasActionPerformed(evt);
             }
         });
         jMenu1.add(botonCargarPeliculas);
-
-        botonGuardarUsuarios.setText("Guardar usuarios...");
-        botonGuardarUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonGuardarUsuariosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(botonGuardarUsuarios);
-
-        botonCargarUsuarios.setText("Cargar usuarios...");
-        botonCargarUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonCargarUsuariosActionPerformed(evt);
-            }
-        });
-        jMenu1.add(botonCargarUsuarios);
 
         jMenuBar1.add(jMenu1);
 
@@ -116,24 +90,27 @@ public class VentanaDatos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(jLabel2)
-                .addGap(81, 81, 81)
-                .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(bIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(128, 128, 128)
-                .addComponent(bRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1)
+                        .addGap(39, 39, 39)
+                        .addComponent(nombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel2)
+                        .addGap(81, 81, 81)
+                        .addComponent(campoPass, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(bIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(bRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel3)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,7 +132,8 @@ public class VentanaDatos extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addComponent(bRegistrarse)
                 .addGap(30, 30, 30)
-                .addComponent(jLabel3))
+                .addComponent(jLabel3)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -191,7 +169,7 @@ public class VentanaDatos extends javax.swing.JFrame {
             msgUsuarioExistente();
         }
         else if((nombreUsuario.getText().length() > 0) && (clave.length() > 0)){
-            users.getListaUsuarios().add(new Usuario(nombreUsuario.getText(), clave, users, films));
+            users.registrar(new Usuario(nombreUsuario.getText(), clave, users, films));
             JOptionPane.showMessageDialog(this, "Te has registrado correctamente. Inicia sesión para comenzar.", "Registro con éxito", JOptionPane.INFORMATION_MESSAGE);
         }else{
             camposVacios();
@@ -212,10 +190,12 @@ public class VentanaDatos extends javax.swing.JFrame {
                 if(!ruta.endsWith(".bin")){
                     ruta += ".bin";     // si el usuario no ha puesto la extension .bin, se escribe automaticamente
                 }
-                FileOutputStream output = new FileOutputStream(ruta);
-                films.WritePeliculas(output);
+                FileOutputStream file = new FileOutputStream(ruta);
+                ObjectOutputStream outStream = new ObjectOutputStream(file);
+                outStream.writeObject(users.getListaUsuarios());
+                outStream.writeObject(films.getListaPeliculas());
+                outStream.close();
                 JOptionPane.showMessageDialog(this, "Se ha guardado el archivo " + ruta + " correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-
             }catch(IOException ex){
                 JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
             }            
@@ -231,8 +211,11 @@ public class VentanaDatos extends javax.swing.JFrame {
         if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
             try {
                 File archivo = selectorArchivos.getSelectedFile();
-                FileInputStream input = new FileInputStream(archivo);
-                films.ReadPeliculas(input);
+                FileInputStream file = new FileInputStream(archivo);
+                ObjectInputStream inputStream = new ObjectInputStream(file);
+                users.setListaUsuarios((HashSet<Usuario>) inputStream.readObject());
+                films.setListaPeliculas((HashSet<Pelicula>) inputStream.readObject());
+                inputStream.close();
                 JOptionPane.showMessageDialog(this, "Se ha cargado el archivo correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -241,48 +224,6 @@ public class VentanaDatos extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_botonCargarPeliculasActionPerformed
-
-    private void botonGuardarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarUsuariosActionPerformed
-        // TODO add your handling code here:
-        JFileChooser selectorArchivos = new JFileChooser();
-        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos binarios (.bin)", "bin", "BIN"));     // asi se pueden filtrar los archivos.bin
-        selectorArchivos.setAcceptAllFileFilterUsed(false);
-        int opcionSeleccionada = selectorArchivos.showSaveDialog(this);
-        if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
-            try {
-                File archivo = selectorArchivos.getSelectedFile();
-                String ruta = archivo.getAbsolutePath();
-                if (!ruta.endsWith(".bin")) {
-                    ruta += ".bin";     // si el usuario no ha puesto la extension .bin, se escribe automaticamente
-                }
-                FileOutputStream output = new FileOutputStream(ruta);
-                users.WriteUsuarios(output);
-                JOptionPane.showMessageDialog(this, "Se ha guardado el archivo " + ruta + " correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Se ha producido un error al guardar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_botonGuardarUsuariosActionPerformed
-
-    private void botonCargarUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCargarUsuariosActionPerformed
-        // TODO add your handling code here:
-        JFileChooser selectorArchivos = new JFileChooser();
-        selectorArchivos.addChoosableFileFilter(new FileNameExtensionFilter("Archivos binarios (.bin)", "bin", "BIN"));     // asi se pueden filtrar los archivos.bin
-        selectorArchivos.setAcceptAllFileFilterUsed(false);
-        int opcionSeleccionada = selectorArchivos.showOpenDialog(this);
-        if (opcionSeleccionada == JFileChooser.APPROVE_OPTION) {
-            try {
-                File archivo = selectorArchivos.getSelectedFile();
-                FileInputStream input = new FileInputStream(archivo);
-                users.ReadUsuarios(input);
-                JOptionPane.showMessageDialog(this, "Se ha cargado el archivo correctamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
-            } /*catch (ClassNotFoundException ex) {
-                JOptionPane.showMessageDialog(this, "Se ha producido un error al cargar el archivo.", "Error", JOptionPane.ERROR_MESSAGE);
-            } */
-        }
-    }//GEN-LAST:event_botonCargarUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -338,16 +279,14 @@ public class VentanaDatos extends javax.swing.JFrame {
     public void setFilms(Peliculas films) {
         this.films = films;
     }
-    
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bIniciarSesion;
     private javax.swing.JButton bRegistrarse;
     private javax.swing.JMenuItem botonCargarPeliculas;
-    private javax.swing.JMenuItem botonCargarUsuarios;
     private javax.swing.JMenuItem botonGuardarPeliculas;
-    private javax.swing.JMenuItem botonGuardarUsuarios;
     private javax.swing.JPasswordField campoPass;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

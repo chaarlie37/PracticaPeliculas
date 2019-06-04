@@ -1,16 +1,9 @@
-/**
- * Lidia Hernandez Calvo
- * Creado el 26/12/2018
- * Ultima actualizacion: 30/12/2018
- * Cambios: (Por Carlos Sánchez Muñoz) pequeños cambios y añadidos más constructores
- * Version:4
- * 
- */
 package practicapeliculas;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.io.*;
+import java.util.Iterator;
 
 public class Usuario implements Serializable{
     private String nombre;
@@ -23,7 +16,6 @@ public class Usuario implements Serializable{
     private HashSet<Partida> partidas_pendientes = new HashSet<Partida>();
     private ArrayList<Usuario> solicitudes_amigos_pendientes = new ArrayList<Usuario>();
     private ArrayList<Usuario> lista_amigos = new ArrayList<Usuario>();
-    private ArrayList <Critica> listaCriticas = new ArrayList<>();
     private Usuarios users;
     private Peliculas films;
 
@@ -65,6 +57,8 @@ public class Usuario implements Serializable{
     }
 
     public void setMuro(StringBuilder muro) {
+        this.muro.insert(0, "\n");
+        this.muro.insert(0, "\n");
         this.muro.insert(0, muro); // Al muro que metemos por argumento se añade al muro de this
     }
 
@@ -141,77 +135,88 @@ public class Usuario implements Serializable{
     public void aceptarInvitacion(Usuario u){
         u.lista_amigos.add(this);
         this.lista_amigos.add(u);
-        for(Usuario usu: u.getSolicitudes_amigos_pendientes()){
-            if (this.nombre.equals(usu.getNombre())){
-                u.getSolicitudes_amigos_pendientes().remove(usu);
+        Iterator<Usuario> it = solicitudes_amigos_pendientes.iterator();
+        boolean encontrado = false;
+        Usuario usu = new Usuario();
+        while(it.hasNext() && !encontrado){
+            usu = it.next();
+            if (usu.getNombre().equals(u.getNombre())) {
+                solicitudes_amigos_pendientes.remove(usu);
+                encontrado = true;
             }
         }
-        System.out.println("El usuario " + u.getNombre() + " ha sido añadido a tu lista de amigos." );
     }
 
     public void rechazarInvitacion(Usuario u){
-        for(Usuario usu: u.getSolicitudes_amigos_pendientes()){
-            if (this.nombre.equals(usu.getNombre())){
-                u.getSolicitudes_amigos_pendientes().remove(usu);
+        Iterator<Usuario> it = solicitudes_amigos_pendientes.iterator();
+        boolean encontrado = false;
+        Usuario usu = new Usuario();
+        while (it.hasNext() && !encontrado) {
+            usu = it.next();
+            if (usu.getNombre().equals(u.getNombre())) {
+                solicitudes_amigos_pendientes.remove(usu);
+                encontrado = true;
             }
         }
-
-        System.out.println("Has rechazado la solicitud de amistad del usuario " + u.getNombre());
-
     }
 
     public void compartirPelicula (Pelicula p){
-        StringBuilder texto = new StringBuilder(p.toString()); // Asi transformamos string en stringbuildr que es lo que necesitamos
-        for (Usuario usu:  lista_amigos) {
-            usu.setMuro(texto);
-        }
+        p.compartir(lista_amigos);
     }
 
     public void compartirPelicula(Pelicula p, Usuario u){
-        StringBuilder texto = new StringBuilder(p.toString());
-        for (Usuario usu: lista_amigos ){
-            if (usu.getNombre().equals(u.getNombre())){
-                u.setMuro(texto);
-            }
-        }
+        p.compartir(u);
     }
 
     public void compartirCritica(Critica c) {
-        StringBuilder texto = new StringBuilder(c.toString()); // Asi transformamos string en stringbuildr que es lo que necesitamos
-        for (Usuario usu:  lista_amigos) {
-            usu.setMuro(texto);
-        }
-        this.setMuro(texto);
+        c.compartir(lista_amigos);
     }
 
     public void compartirCritica(Critica c, Usuario u){
-        StringBuilder texto = new StringBuilder(c.toString());
-        for (Usuario usu: lista_amigos ){
-            if (usu.getNombre().equals(u.getNombre())){
-                u.setMuro(texto);
+        c.compartir(u);
+    }
+
+    public void compartirPartida(Partida pe){
+        pe.compartir(lista_amigos);
+    }
+
+    public void compartirPartida(Partida pe, Usuario u){
+        pe.compartir(u);
+    }
+
+    public void compartirTodo(){
+        for(Pelicula p : films.getListaPeliculas()){
+            p.compartir(lista_amigos);
+            for (Critica c : p.getListaCriticas()) {
+                c.compartir(lista_amigos);
             }
+        }
+        
+        for (Partida p : partidas_completas) {
+            p.compartir(lista_amigos);
         }
     }
 
-    public void compartirPartida(Partida p){
-
-
+    public void compartirTodo(Usuario u){
+        for (Pelicula p : films.getListaPeliculas()) {
+            p.compartir(u);
+            for (Critica c : p.getListaCriticas()) {
+                c.compartir(u);
+            }
+        }
+        
+        for (Partida p : partidas_completas) {
+            p.compartir(u);
+        }
     }
-
-    public void compartirPartida(Partida p, Usuario u){
-
-    }
-
-    public void compartirTodo(){}
-
-    public void compartirTodo(Usuario u){}
 
     public void añadirPelicula(Pelicula p, Peliculas films){
         films.getListaPeliculas().add(p);
     }
 
-    public void añadirCritica(Critica c){
-        this.listaCriticas.add(c);
+    public void añadirCritica(Critica c, Pelicula p){
+        p.anadirCritica(c);
+        setMuro(new StringBuilder(c.mostrarCritica()));
     }
 
     public Partida iniciarPartida(Usuario u){
@@ -243,7 +248,7 @@ public class Usuario implements Serializable{
         if(p.getGanador().equals(this)){
             partidas_ganadas++;
         }
-        else if(p.getPtos_jugador1() == p.getPtos_jugador2()){
+        else if(p.getGanador() == null){
             partidas_empatadas++;
         }
         else{
